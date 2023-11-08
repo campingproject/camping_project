@@ -10,7 +10,7 @@ ARG JAR_FILE=./build/libs/app-backend-1.0.jar
 COPY ${JAR_FILE} app.jar
 
 # 외부 설정 파일을 복사합니다. (예: security 폴더 안에 application.yml 파일)
-COPY security/application-prod.yml application.yml
+COPY security/application.yml application.yml
 
 # 빌드된 이미지가 실행될 때 실행할 명령어
 ENTRYPOINT ["java", "-jar", "app.jar"]

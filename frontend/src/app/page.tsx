@@ -1,9 +1,9 @@
-import MswTest from './components/MswTest/MswTest';
+import { Header } from '@/components/Header';
 
 export default function Home() {
   return (
     <div>
-      <MswTest />
+      <Header />
     </div>
   );
 }

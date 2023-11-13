@@ -1,36 +1,37 @@
-"use client";
+'use client';
 
-import styled from "styled-components";
-import useEmblaCarousel from "embla-carousel-react";
+import styled from 'styled-components';
+import useEmblaCarousel from 'embla-carousel-react';
+import Image from 'next/image';
+import bestArr from './fragments/imageByIndex';
 
 const Container = styled.div`
-  width: 80%;
-  margin: auto;
   border: 1px solid black;
-  padding: 10px;
+  margin: auto;
   overflow: hidden;
+  --slide-spacing: 1rem;
+  --slide-size: 33%;
+  --slide-height: 19rem;
+  padding: 1.6rem;
 `;
 
 const ImgBox = styled.div`
   display: flex;
-  flex-wrap: no-wrap;
-`;
-
-const Img = styled.div`
-  margin: 10px;
-  width: 150px;
-  height: 100px;
-  border: 1px solid black;
-  flex: 0 0 100%;
+  width: 33%;
+  .embla__slide_img {
+    margin: 10px;
+  }
 `;
 
 export default function Main() {
-  const [viewportRef, embla] = useEmblaCarousel({ loop: true });
+  const [viewportRef] = useEmblaCarousel({ loop: true, align: 'start' });
   return (
     <Container ref={viewportRef}>
       <ImgBox>
-        {Array.from({ length: 12 }, (_, index) => (
-          <Img key={index}>main</Img>
+        {bestArr.map((v: any, index: number) => (
+          <div className="embla__slide" key={index}>
+            <Image className="embla__slide_img" src={v} alt="best1" defaultValue={1} />
+          </div>
         ))}
       </ImgBox>
     </Container>

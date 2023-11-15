@@ -3,13 +3,13 @@
 import { Logo } from '@/components/Logo';
 import { StyledMain } from './Login.styles';
 import Link from 'next/link';
-import Image from 'next/image';
-import { kakaoIcon, naverIcon } from '@/public/svgs';
-import { getProviders, signIn, useSession } from 'next-auth/react';
+import { getProviders, signIn } from 'next-auth/react';
 import { useEffect, useState } from 'react';
+import { kakaoIcon, naverIcon } from '@/public/svgs';
+import LoginButton from '@/components/features/Login/LoginButton';
 
 function Login({}) {
-  const { data: session } = useSession();
+  // const { data: session } = useSession(); // 유저 로그인 시 생성되는 session data
   const [providers, setProviders] = useState(null);
 
   const handleKakao = async () => {
@@ -41,16 +41,20 @@ function Login({}) {
       <p>기존 계정으로 간편하게 로그인 하세요!</p>
 
       <section>
-        <button onClick={handleKakao} className="kakao_login_button">
-          <Image src={kakaoIcon} width={37} height={37} alt="icon_kakao" />
-          <span>카카오계정으로 로그인</span>
-        </button>
-
-        <button onClick={handleNaver} className="naver_login_button">
-          <Image src={naverIcon} width={30} height={30} alt="icon_naver" />
-          <span>네이버 아이디로 로그인</span>
-        </button>
-
+        <LoginButton
+          onClick={handleKakao}
+          className="kakao_login_button"
+          iconSrc={kakaoIcon}
+          iconAlt="icon_kakao"
+          span="카카오계정으로 로그인"
+        />
+        <LoginButton
+          onClick={handleNaver}
+          className="naver_login_button"
+          iconSrc={naverIcon}
+          iconAlt="icon_naver"
+          span="네이버 아이디로 로그인"
+        />
         <Link href="#">회원가입 하기</Link>
       </section>
     </StyledMain>

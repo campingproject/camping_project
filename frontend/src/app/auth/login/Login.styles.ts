@@ -8,8 +8,9 @@ const color = {
   naverBackground: '#03CF5D',
 };
 const size = {
-  linkWidth: '30vw',
-  linkHeight: '7vh',
+  buttonWidth: '30vw',
+  buttonHeight: '7vh',
+  // mediaButtonWidth: '50vw',
 };
 export const StyledMain = styled.main`
   text-align: center;
@@ -30,8 +31,9 @@ export const StyledMain = styled.main`
     margin: auto;
 
     button {
-      width: ${size.linkWidth};
-      height: ${size.linkHeight};
+      font-size: 1rem;
+      width: ${size.buttonWidth};
+      height: ${size.buttonHeight};
       border-radius: 15px;
       margin: auto;
       margin-bottom: 0.9rem;
@@ -48,6 +50,9 @@ export const StyledMain = styled.main`
       &.naver_login_button {
         color: ${color.naverLogo};
         background-color: ${color.naverBackground};
+        img {
+          width: 1.8rem;
+        }
       }
       img {
         position: absolute;

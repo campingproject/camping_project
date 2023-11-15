@@ -1,4 +1,4 @@
-import AuthSession from '@/components/Providers/AuthSession';
+import AuthSession from '@/providers/AuthSession';
 import SWRConfigContext from '@/context/SWRConfigContext';
 import { MSWComponent } from '@/mocks/MSWComponent';
 import type { Metadata } from 'next';

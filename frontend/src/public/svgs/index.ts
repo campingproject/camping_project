@@ -1,4 +1,13 @@
-export { default as LogoIcon } from './logo.svg';
-export { default as Best1 } from './best1.svg';
-export { default as Best2 } from './best2.svg';
-export { default as Best3 } from './best3.svg';
+export { default as LogoIcon } from "./logo.svg";
+export { default as Best1 } from "./best1.svg";
+export { default as Best2 } from "./best2.svg";
+export { default as Best3 } from "./best3.svg";
+export { default as New1 } from "./new1.svg";
+export { default as New2 } from "./new2.svg";
+export { default as New3 } from "./new3.svg";
+export { default as Guide1 } from "./guide1.svg";
+export { default as Guide2 } from "./guide2.svg";
+export { default as Guide3 } from "./guide3.svg";
+export { default as Hot1 } from "./hot1.svg";
+export { default as Hot2 } from "./hot2.svg";
+export { default as Hot3 } from "./hot3.svg";

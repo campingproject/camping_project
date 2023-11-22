@@ -1,6 +1,7 @@
 import SWRConfigContext from '@/context/SWRConfigContext';
 import { MSWComponent } from '@/mocks/MSWComponent';
 import type { Metadata } from 'next';
+import { GlobalStyle } from '../styles/global-style';
 
 export const metadata: Metadata = {
   title: '캠핑갈까',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <GlobalStyle />
       <body>
         <MSWComponent>
           <SWRConfigContext>{children}</SWRConfigContext>

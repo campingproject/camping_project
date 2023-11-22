@@ -15,6 +15,10 @@ const Theme = {
     small: '0.875rem',
     xsmall: '0.75rem',
   },
+  screen: {
+    mobile: '480px',
+    tablet: '1024px',
+  },
 };
 
 export default Theme;

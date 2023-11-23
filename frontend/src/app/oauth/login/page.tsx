@@ -3,36 +3,19 @@
 import { Logo } from '@/components/Logo';
 import { StyledMain } from './Login.styles';
 import Link from 'next/link';
-import { getProviders, signIn } from 'next-auth/react';
-import { useEffect, useState } from 'react';
 import { kakaoIcon, naverIcon } from '@/public/svgs';
 import LoginButton from '@/components/features/Login/LoginButton';
+import { KAKAO_AUTH_LOGIN_URI, NAVER_AUTH_LOGIN_URI } from '@/constants/oauth';
 
-function Login({}) {
-  // const { data: session } = useSession(); // 유저 로그인 시 생성되는 session data
-  const [providers, setProviders] = useState(null);
-
-  const handleKakao = async () => {
-    const result = await signIn('kakao', {
-      redirect: true, // 로그인 성공 시 callbackUrl로 이동
-      callbackUrl: '/',
-    });
+function Login() {
+  const handleKakao = () => {
+    console.log('카카오 로그인 버튼 클릭');
+    window.location.href = KAKAO_AUTH_LOGIN_URI;
   };
-
-  const handleNaver = async () => {
-    const result = await signIn('naver', {
-      redirect: true, // 로그인 성공 시 callbackUrl로 이동
-      callbackUrl: '/',
-    });
+  const handleNaver = () => {
+    console.log('네이버 로그인 버튼 클릭');
+    window.location.href = NAVER_AUTH_LOGIN_URI;
   };
-
-  useEffect(() => {
-    (async () => {
-      const res: any = await getProviders();
-      // console.log(res);
-      setProviders(res);
-    })();
-  }, []);
 
   return (
     <StyledMain>

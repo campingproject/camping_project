@@ -1,5 +1,6 @@
 package camping.appbackend.user.domain.entity;
 
+import camping.appbackend.common.base.BaseTimeEntity;
 import camping.appbackend.user.domain.entity.type.SocialType;
 import camping.appbackend.user.domain.entity.type.UserRoleType;
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ import org.hibernate.annotations.DynamicInsert;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table
 @Entity
-public class User {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +36,7 @@ public class User {
     private String name;
 
     @Comment("생년월일")
-    @Column(length = 6)
+    @Column(length = 10)
     private String birthday;
 
     @Comment("휴대폰 번호")
@@ -72,22 +73,18 @@ public class User {
     @Lob
     private String profileImage;
 
-
     @Builder
-    public User(Long id, String name, String birthday, String phoneNumber, String nickName, SocialType socialType,
-            String address, UserRoleType userRoleType, String email, boolean isRemove, String profileImage) {
-        this.id = id;
+    public User(String name, String birthday, String phoneNumber, String nickName, SocialType socialType,
+            UserRoleType userRoleType, String address, String email, boolean isRemove, String profileImage) {
         this.name = name;
         this.birthday = birthday;
         this.phoneNumber = phoneNumber;
         this.nickName = nickName;
         this.socialType = socialType;
-        this.address = address;
         this.userRoleType = userRoleType;
+        this.address = address;
         this.email = email;
         this.isRemove = isRemove;
         this.profileImage = profileImage;
     }
-
-
 }

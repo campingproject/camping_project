@@ -46,7 +46,19 @@ export const useDateRangePicker = (initialSelectedDateRange?: SelectedDateRange)
     setSelectedDateRange({ startDate: null, endDate: null });
   };
 
-  const handleDateSelect = (dateString: string, onDaySelect?: CallableFunction) => {
+  const handleDateSelect = (
+    dateString: string,
+    onDaySelect?: CallableFunction,
+    checkIn?: boolean,
+  ) => {
+    const selectFunc = checkIn ? handleCheckIn : handleCheckOut;
+    const nextSelectedDates = selectFunc(dateString);
+
+    setSelectedDateRange(nextSelectedDates);
+    onDaySelect?.(nextSelectedDates);
+  };
+
+  const handleCheckOut = (dateString: string) => {
     const startDate = selectedDateRange.startDate ? toDate(selectedDateRange.startDate) : null;
     const selectedDate = toDate(dateString);
     const nextSelectedDates: SelectedDateRange = {
@@ -54,18 +66,33 @@ export const useDateRangePicker = (initialSelectedDateRange?: SelectedDateRange)
       endDate: null,
     };
 
-    if (startDate && !selectedDateRange.endDate && selectedDate < startDate) {
+    if (!startDate) {
       nextSelectedDates.startDate = dateString;
-      nextSelectedDates.endDate = selectedDateRange.startDate;
-    } else if (startDate && !selectedDateRange.endDate) {
+    } else if (startDate > selectedDate) {
+      nextSelectedDates.startDate = dateString;
+      nextSelectedDates.endDate = null;
+    } else {
       nextSelectedDates.startDate = selectedDateRange.startDate;
       nextSelectedDates.endDate = dateString;
-    } else {
-      nextSelectedDates.startDate = dateString;
     }
 
-    setSelectedDateRange(nextSelectedDates);
-    onDaySelect?.(nextSelectedDates);
+    return nextSelectedDates;
+  };
+
+  const handleCheckIn = (dateString: string) => {
+    const endDate = selectedDateRange.endDate ? toDate(selectedDateRange.endDate) : null;
+    const selectedDate = toDate(dateString);
+    const nextSelectedDates: SelectedDateRange = {
+      startDate: null,
+      endDate: null,
+    };
+
+    nextSelectedDates.startDate = dateString;
+    if (endDate && endDate > selectedDate) {
+      nextSelectedDates.endDate = selectedDateRange.endDate;
+    }
+
+    return nextSelectedDates;
   };
 
   return {

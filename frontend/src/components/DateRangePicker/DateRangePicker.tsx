@@ -26,6 +26,9 @@ export interface DateRangePickerProps {
 
   /** 날짜를 선택했을 때 실행할 함수 */
   onDateSelect?: CallableFunction;
+
+  /** 체크인 버튼 클릭 여부 */
+  checkIn?: boolean;
 }
 
 const DateRangePicker = ({
@@ -36,6 +39,7 @@ const DateRangePicker = ({
   maxDateRange = DEFAULT_MAX_DATE_RANGE,
   initialSelectedDateRange,
   onDateSelect,
+  checkIn = false,
 }: DateRangePickerProps) => {
   const {
     todayDate,
@@ -57,7 +61,7 @@ const DateRangePicker = ({
       month: yearMonth.month,
       date,
     });
-    handleDateSelect(clickedDate, onDateSelect);
+    handleDateSelect(clickedDate, onDateSelect, checkIn);
   };
 
   const handlePastButton = () => {

@@ -40,16 +40,6 @@ export const DayDefaultBox = styled.span<{ $isClickable?: boolean }>`
   }
 `;
 
-export const TodayBox = styled(DayDefaultBox)`
-  background-color: ${Theme.colors.blue300};
-
-  color: ${Theme.colors.blue800};
-
-  &:hover {
-    background-color: ${Theme.colors.blue300};
-  }
-`;
-
 export const DayInRangeBox = styled(DayDefaultBox)`
   background-color: inherit;
 `;

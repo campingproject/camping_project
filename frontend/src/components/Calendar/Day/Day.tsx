@@ -6,7 +6,6 @@ import {
   DayInRangeBox,
   DisabledDayBox,
   SelectedDayBox,
-  TodayBox,
 } from './Day.style';
 
 export interface DayProps {
@@ -52,7 +51,6 @@ const Day = ({
 
   let DayBox = DayDefaultBox;
   if (isInRange) DayBox = DayInRangeBox;
-  if (isToday) DayBox = TodayBox;
   if (isSelected) DayBox = SelectedDayBox;
   if (isDisabled) DayBox = DisabledDayBox;
 

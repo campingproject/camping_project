@@ -4,7 +4,7 @@ import { Logo } from '@/components/Logo';
 import { StyledMain } from './Login.styles';
 import Link from 'next/link';
 import { kakaoIcon, naverIcon } from '@/public/svgs';
-import LoginButton from '@/components/features/Login/LoginButton';
+import { LoginButton } from '@/components/Login';
 import { KAKAO_AUTH_LOGIN_URI, NAVER_AUTH_LOGIN_URI } from '@/constants/oauth';
 
 function Login() {

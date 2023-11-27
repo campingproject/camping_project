@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { svgType } from "@/types";
+import { useEffect, useState } from "react";
+import { Sizes } from "@/styles";
 
 const Embla = styled.div`
   --slide-spacing: 1rem;
@@ -35,16 +37,32 @@ const SlidImg = styled.div`
   width: 100%;
   object-fit: cover;
   text-align: center;
+  & > first-child {
+    width: 100%;
+  }
 `;
 
 export default function Carousel({ props }: { props: svgType[] }) {
+  const [width, setWidth] = useState(window.innerWidth);
+  const [imageWidth, setImageWidth] = useState(0);
   const [viewportRef] = useEmblaCarousel({
     loop: false,
     align: "start",
     slidesToScroll: "auto",
     containScroll: "trimSnaps",
   });
-  console.log(props);
+
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <Embla>
       <Viewport ref={viewportRef}>
@@ -52,12 +70,20 @@ export default function Carousel({ props }: { props: svgType[] }) {
           {props.map((item: any, index: any) => (
             <Slide key={index}>
               <SlidImg>
-                <Image
-                  src={item.src}
-                  alt={item.src}
-                  width={item.width}
-                  height={item.height}
-                />
+                <div>
+                  <Image
+                    src={item.src}
+                    alt={item.src}
+                    width={
+                      width < Sizes.mobile
+                        ? item.width / 2
+                        : Sizes.mobile <= width && width < Sizes.tablet
+                        ? (item.width * 2) / 3
+                        : item.width
+                    }
+                    height={item.height}
+                  />
+                </div>
                 <span>description</span>
               </SlidImg>
             </Slide>

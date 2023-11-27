@@ -6,7 +6,7 @@ import axios from 'axios';
 function OauthRedirectedPage() {
   const router = useRouter();
   // const code = new URL(window.location.href).searchParams.get('code');
-  const handleKakaoLogin = async () => {
+  const sendAuthCode = async () => {
     try {
       // 서버로 API 요청을 보냄
       const response = await axios.get('/api/login', {
@@ -26,7 +26,7 @@ function OauthRedirectedPage() {
     }
   };
   useEffect(() => {
-    handleKakaoLogin();
+    sendAuthCode();
   }, []);
 
   return <div>OauthRedirectedPage... 로그인 중입니다.</div>;

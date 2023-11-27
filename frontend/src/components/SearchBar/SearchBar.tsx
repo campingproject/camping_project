@@ -12,10 +12,13 @@ import {
   DialogTitle,
   InputBox,
   SearchBarContainer,
+  SearchIconBox,
   Title,
 } from './Searchbar.style';
 import { RegionDialog } from '../RegionDialog';
 import { PeopleDialog } from '../PeopleDialog';
+import { SearchIcon } from '@/public/svgs';
+import Image from 'next/image';
 
 type DialogTypes = '지역' | '체크인' | '체크아웃' | '인원';
 
@@ -48,6 +51,11 @@ export default function SearchBar() {
     setEndDate(endDate);
 
     setDialogType('체크아웃');
+  };
+
+  const handleSubmit = () => {
+    //TODO - 제출시 지역, 체크인, 체크아웃, 인원 => recoil로 상태 변경
+    //TODO - router로 이동
   };
 
   const handleCheckOut = (dates: SelectedDateRange) => {
@@ -108,6 +116,7 @@ export default function SearchBar() {
           <Title>인원</Title>
           <Content>인원 선택</Content>
           {isDialogOpen && dialogType === '인원' && (
+            //FIXME - position right:0가 안먹힘
             <SearchBarDialog ref={dialogRef} style={{ right: 0 }}>
               <DialogContainer>
                 <DialogTitle>인원 선택</DialogTitle>
@@ -141,6 +150,9 @@ export default function SearchBar() {
             </SearchBarDialog>
           )}
         </InputBox>
+        <SearchIconBox onClick={handleSubmit}>
+          <Image src={SearchIcon} alt={'search'} width={32} height={32} />
+        </SearchIconBox>
       </SearchBarContainer>
       {isDialogOpen && (dialogType === '체크인' || dialogType === '체크아웃') && (
         <SearchBarDialog ref={dialogRef}>

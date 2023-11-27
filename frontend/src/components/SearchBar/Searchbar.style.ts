@@ -4,6 +4,9 @@ import styled from 'styled-components';
 export const SearchBarContainer = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
+
+  margin-top: 16px;
   background-color: ${Theme.colors.gray100};
   border-radius: 28px;
 `;
@@ -61,4 +64,18 @@ export const Box = styled.div`
 
   width: 100%;
   gap: 8px;
+`;
+
+export const SearchIconBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 8px;
+  padding: 4px;
+  background-color: ${Theme.colors.orange300};
+  border-radius: 50%;
+  :hover {
+    cursor: pointer;
+  }
 `;

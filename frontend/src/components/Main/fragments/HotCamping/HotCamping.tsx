@@ -1,8 +1,8 @@
-import { svgType } from "@/types";
-import * as Main from "@/styles";
-import Carousel from "@/components/Carousel";
+import { svgType } from '@/types';
+import * as Main from '@/styles';
+import Carousel from '@/components/Carousel';
 
-export default function Hot({ props }: { props: svgType[] }) {
+export default function HotCamping({ props }: { props: svgType[] }) {
   return (
     <Main.Container>
       <Main.Title>

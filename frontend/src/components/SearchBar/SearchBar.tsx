@@ -33,6 +33,7 @@ export default function SearchBar() {
   const [teenNumber, setTeenNumber] = useState<number>(0);
   const [childNumber, setChildNumber] = useState<number>(0);
   const [petNumber, setPetNumber] = useState<number>(0);
+  const totalNumber = adultNumber + teenNumber + childNumber + petNumber;
 
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -114,45 +115,45 @@ export default function SearchBar() {
         </InputBox>
         <InputBox $open={isDialogOpen && dialogType === '인원'} onClick={() => openDialog('인원')}>
           <Title>인원</Title>
-          <Content>인원 선택</Content>
-          {isDialogOpen && dialogType === '인원' && (
-            //FIXME - position right:0가 안먹힘
-            <SearchBarDialog ref={dialogRef} style={{ right: 0 }}>
-              <DialogContainer>
-                <DialogTitle>인원 선택</DialogTitle>
-                <Box>
-                  <PeopleDialog
-                    title="성인"
-                    description="만 19세 이상"
-                    state={adultNumber}
-                    setStateValue={setAdultNumber}
-                  />
-                  <PeopleDialog
-                    title="청소년"
-                    description="만 13세 이상"
-                    state={teenNumber}
-                    setStateValue={setTeenNumber}
-                  />
-                  <PeopleDialog
-                    title="어린이"
-                    description="만 2세 ~ 12세"
-                    state={childNumber}
-                    setStateValue={setChildNumber}
-                  />
-                  <PeopleDialog
-                    title="반려동물"
-                    description="반려 동물을 동반하시나요?"
-                    state={petNumber}
-                    setStateValue={setPetNumber}
-                  />
-                </Box>
-              </DialogContainer>
-            </SearchBarDialog>
-          )}
+          <Content>{totalNumber === 0 ? '인원 선택' : `총 ${totalNumber} 명`}</Content>
         </InputBox>
         <SearchIconBox onClick={handleSubmit}>
           <Image src={SearchIcon} alt={'search'} width={32} height={32} />
         </SearchIconBox>
+        {isDialogOpen && dialogType === '인원' && (
+          //FIXME - position right:0가 안먹힘
+          <SearchBarDialog ref={dialogRef} style={{ position: 'absolute', right: '-150px' }}>
+            <DialogContainer>
+              <DialogTitle>인원 선택</DialogTitle>
+              <Box>
+                <PeopleDialog
+                  title="성인"
+                  description="만 19세 이상"
+                  state={adultNumber}
+                  setStateValue={setAdultNumber}
+                />
+                <PeopleDialog
+                  title="청소년"
+                  description="만 13세 이상"
+                  state={teenNumber}
+                  setStateValue={setTeenNumber}
+                />
+                <PeopleDialog
+                  title="어린이"
+                  description="만 2세 ~ 12세"
+                  state={childNumber}
+                  setStateValue={setChildNumber}
+                />
+                <PeopleDialog
+                  title="반려동물"
+                  description="반려 동물을 동반하시나요?"
+                  state={petNumber}
+                  setStateValue={setPetNumber}
+                />
+              </Box>
+            </DialogContainer>
+          </SearchBarDialog>
+        )}
       </SearchBarContainer>
       {isDialogOpen && (dialogType === '체크인' || dialogType === '체크아웃') && (
         <SearchBarDialog ref={dialogRef}>

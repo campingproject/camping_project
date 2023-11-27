@@ -12,7 +12,7 @@ function LoginButton({ onClick, className, iconSrc, iconAlt, span }: LoginButton
   return (
     <>
       <button onClick={onClick} className={className}>
-        <Image src={iconSrc} width={37} height={37} alt={iconAlt} />
+        <Image src={iconSrc} width={30} height={30} alt={iconAlt} />
         <span>{span}</span>
       </button>
     </>

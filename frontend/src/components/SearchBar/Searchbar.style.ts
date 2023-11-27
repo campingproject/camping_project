@@ -41,3 +41,24 @@ export const Title = styled.span`
 export const Content = styled.span`
   font-size: ${Theme.fontSize.medium};
 `;
+
+export const DialogContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 240px;
+`;
+
+export const DialogTitle = styled.div`
+  font-size: ${Theme.fontSize.large};
+`;
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  gap: 8px;
+`;

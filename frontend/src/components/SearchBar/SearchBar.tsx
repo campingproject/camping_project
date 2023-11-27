@@ -5,8 +5,17 @@ import { SearchBarDialog } from '../SearchBarDialog';
 import { DateRangePicker } from '../DateRangePicker';
 import { RegionTypes } from '@/types/region';
 import { SelectedDateRange } from '@/types/date';
-import { Content, InputBox, SearchBarContainer, Title } from './Searchbar.style';
+import {
+  Box,
+  Content,
+  DialogContainer,
+  DialogTitle,
+  InputBox,
+  SearchBarContainer,
+  Title,
+} from './Searchbar.style';
 import { RegionDialog } from '../RegionDialog';
+import { PeopleDialog } from '../PeopleDialog';
 
 type DialogTypes = '지역' | '체크인' | '체크아웃' | '인원';
 
@@ -16,6 +25,11 @@ export default function SearchBar() {
   const [startDate, setStartDate] = useState<string | null>(null);
   const [endDate, setEndDate] = useState<string | null>(null);
   const [dialogType, setDialogType] = useState<DialogTypes>();
+
+  const [adultNumber, setAdultNumber] = useState<number>(0);
+  const [teenNumber, setTeenNumber] = useState<number>(0);
+  const [childNumber, setChildNumber] = useState<number>(0);
+  const [petNumber, setPetNumber] = useState<number>(0);
 
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -69,7 +83,10 @@ export default function SearchBar() {
           <Content>{region ?? '지역 선택'}</Content>
           {isDialogOpen && dialogType === '지역' && (
             <SearchBarDialog ref={dialogRef}>
-              <RegionDialog onRegionSelect={handleRegion} />
+              <DialogContainer>
+                <DialogTitle>지역으로 검색하기</DialogTitle>
+                <RegionDialog onRegionSelect={handleRegion} />
+              </DialogContainer>
             </SearchBarDialog>
           )}
         </InputBox>
@@ -92,22 +109,35 @@ export default function SearchBar() {
           <Content>인원 선택</Content>
           {isDialogOpen && dialogType === '인원' && (
             <SearchBarDialog ref={dialogRef} style={{ right: 0 }}>
-              <div style={{ width: '200px' }}>
-                <Title>인원 선택</Title>
-                <div
-                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-                >
-                  <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span>성인</span>
-                    <span style={{ color: 'gray' }}>만 19세 이상</span>
-                  </div>
-                  <div>
-                    <button>-</button>
-                    <span>0</span>
-                    <button>+</button>
-                  </div>
-                </div>
-              </div>
+              <DialogContainer>
+                <DialogTitle>인원 선택</DialogTitle>
+                <Box>
+                  <PeopleDialog
+                    title="성인"
+                    description="만 19세 이상"
+                    state={adultNumber}
+                    setStateValue={setAdultNumber}
+                  />
+                  <PeopleDialog
+                    title="청소년"
+                    description="만 13세 이상"
+                    state={teenNumber}
+                    setStateValue={setTeenNumber}
+                  />
+                  <PeopleDialog
+                    title="어린이"
+                    description="만 2세 ~ 12세"
+                    state={childNumber}
+                    setStateValue={setChildNumber}
+                  />
+                  <PeopleDialog
+                    title="반려동물"
+                    description="반려 동물을 동반하시나요?"
+                    state={petNumber}
+                    setStateValue={setPetNumber}
+                  />
+                </Box>
+              </DialogContainer>
             </SearchBarDialog>
           )}
         </InputBox>

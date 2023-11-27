@@ -8,7 +8,6 @@ type Props = {
 export default function RegionDialog({ onRegionSelect }: Props) {
   return (
     <RegionContainer>
-      <Title>지역으로 검색하기</Title>
       <RegionGrid>
         {REGIONS.map((region) => (
           <RegionButton key={region} onClick={() => onRegionSelect(region)}>

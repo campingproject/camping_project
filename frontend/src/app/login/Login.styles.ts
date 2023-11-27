@@ -77,20 +77,16 @@ export const StyledMain = styled.main`
   }
 
   @media (max-width: ${Theme.screen.tablet}) {
-    section {
-      button {
-        width: ${size.tabletButtonWidth};
-        height: ${size.tableButtonHeight};
-      }
+    section > button {
+      width: ${size.tabletButtonWidth};
+      height: ${size.tableButtonHeight};
     }
   }
 
   @media (max-width: ${Theme.screen.mobile}) {
-    section {
-      button {
-        width: ${size.mobileButtonWidth};
-        height: ${size.mobileButtonHeight};
-      }
+    section > button {
+      width: ${size.mobileButtonWidth};
+      height: ${size.mobileButtonHeight};
     }
   }
 `;

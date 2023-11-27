@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { SearchBarDialog } from '../SearchBarDialog';
-import { REGIONS } from '@/constants/region';
 import { DateRangePicker } from '../DateRangePicker';
 import { RegionTypes } from '@/types/region';
 import { SelectedDateRange } from '@/types/date';
-import { InputBox, SearchBarContainer } from './Searchbar.style';
+import { Content, InputBox, SearchBarContainer, Title } from './Searchbar.style';
+import { RegionDialog } from '../RegionDialog';
 
 type DialogTypes = '지역' | '체크인' | '체크아웃' | '인원';
 
@@ -65,18 +65,11 @@ export default function SearchBar() {
     <div>
       <SearchBarContainer>
         <InputBox $open={isDialogOpen && dialogType === '지역'} onClick={() => openDialog('지역')}>
-          <h3>지역</h3>
-          <span>{region ?? '지역 선택'}</span>
+          <Title>지역</Title>
+          <Content>{region ?? '지역 선택'}</Content>
           {isDialogOpen && dialogType === '지역' && (
             <SearchBarDialog ref={dialogRef}>
-              <h2>지역으로 검색하기</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 40px)', gap: '8px' }}>
-                {REGIONS.map((region) => (
-                  <button key={region} onClick={() => handleRegion(region)}>
-                    {region}
-                  </button>
-                ))}
-              </div>
+              <RegionDialog onRegionSelect={handleRegion} />
             </SearchBarDialog>
           )}
         </InputBox>
@@ -84,22 +77,37 @@ export default function SearchBar() {
           $open={isDialogOpen && dialogType === '체크인'}
           onClick={() => openDialog('체크인')}
         >
-          <h3>체크인</h3>
-          <span>{startDate ?? '날짜 선택'}</span>
+          <Title>체크인</Title>
+          <Content>{startDate ?? '날짜 선택'}</Content>
         </InputBox>
         <InputBox
           $open={isDialogOpen && dialogType === '체크아웃'}
           onClick={() => openDialog('체크아웃')}
         >
-          <h3>체크아웃</h3>
-          <span>{endDate ?? '날짜 선택'}</span>
+          <Title>체크아웃</Title>
+          <Content>{endDate ?? '날짜 선택'}</Content>
         </InputBox>
         <InputBox $open={isDialogOpen && dialogType === '인원'} onClick={() => openDialog('인원')}>
-          <h3>인원</h3>
-          <span>인원 선택</span>
+          <Title>인원</Title>
+          <Content>인원 선택</Content>
           {isDialogOpen && dialogType === '인원' && (
-            <SearchBarDialog ref={dialogRef}>
-              <div>인원</div>
+            <SearchBarDialog ref={dialogRef} style={{ right: 0 }}>
+              <div style={{ width: '200px' }}>
+                <Title>인원 선택</Title>
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                >
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <span>성인</span>
+                    <span style={{ color: 'gray' }}>만 19세 이상</span>
+                  </div>
+                  <div>
+                    <button>-</button>
+                    <span>0</span>
+                    <button>+</button>
+                  </div>
+                </div>
+              </div>
             </SearchBarDialog>
           )}
         </InputBox>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const SearchBarContainer = styled.div`
   position: relative;
   display: flex;
-  background-color: ${Theme.colors.gray200};
+  background-color: ${Theme.colors.gray100};
   border-radius: 28px;
 `;
 
@@ -13,7 +13,8 @@ export const InputBox = styled.div<{ $open: boolean }>`
   display: flex;
   flex-direction: column;
   width: 120px;
-  padding: 8px;
+  padding: 8px 16px;
+  gap: 4px;
   border-radius: 28px;
   background-color: ${(props) => (props.$open ? `${Theme.colors.orange200}` : 'inherit')};
 `;
@@ -30,4 +31,13 @@ export const StyledInput = styled.input`
 export const DateSelectBox = styled.div`
   display: flex;
   width: 240px;
+`;
+
+export const Title = styled.span`
+  font-size: ${Theme.fontSize.xsmall};
+  color: ${Theme.colors.gray400};
+`;
+
+export const Content = styled.span`
+  font-size: ${Theme.fontSize.medium};
 `;

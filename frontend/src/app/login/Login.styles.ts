@@ -9,7 +9,7 @@ const color = {
 };
 const size = {
   buttonWidth: '22vw',
-  buttonHeight: '6.5vh',
+  buttonHeight: '6.4vh',
   tabletButtonWidth: '35vw',
   tableButtonHeight: '5.2vh',
   mobileButtonWidth: '72vw',
@@ -57,6 +57,7 @@ export const StyledMain = styled.main`
         background-color: ${color.naverBackground};
         img {
           width: 24px;
+          height: 24px;
         }
       }
       img {
@@ -90,3 +91,5 @@ export const StyledMain = styled.main`
     }
   }
 `;
+
+export default StyledMain;

@@ -121,7 +121,6 @@ export default function SearchBar() {
           <Image src={SearchIcon} alt={'search'} width={32} height={32} />
         </SearchIconBox>
         {isDialogOpen && dialogType === '인원' && (
-          //FIXME - position right:0가 안먹힘
           <SearchBarDialog ref={dialogRef} style={{ position: 'absolute', right: '-150px' }}>
             <DialogContainer>
               <DialogTitle>인원 선택</DialogTitle>

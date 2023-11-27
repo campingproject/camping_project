@@ -14,6 +14,7 @@ export default function Header() {
         <Logo />
       </Link>
       <SearchBar />
+      {/**TODO - Menu bar 구현 */}
       <Image src={MenuIcon} alt="menu" />
     </HeaderContainer>
   );

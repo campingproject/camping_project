@@ -9,9 +9,9 @@ const color = {
 };
 const size = {
   buttonWidth: '22vw',
-  buttonHeight: '6.4vh',
-  tabletButtonWidth: '35vw',
-  tableButtonHeight: '5.2vh',
+  buttonHeight: '6.5vh',
+  tabletButtonWidth: '52vw',
+  tableButtonHeight: '5.7vh',
   mobileButtonWidth: '72vw',
   mobileButtonHeight: '7.5vh',
 };
@@ -41,7 +41,7 @@ export const StyledMain = styled.main`
       height: ${size.buttonHeight};
       border-radius: 12px;
       margin: auto;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.5rem;
       border: none;
       display: flex;
       justify-content: left;
@@ -62,7 +62,7 @@ export const StyledMain = styled.main`
       }
       img {
         position: absolute;
-        margin-left: 0.9rem;
+        margin-left: 0.5rem;
       }
       span {
         margin: auto;
@@ -88,6 +88,7 @@ export const StyledMain = styled.main`
     section > button {
       width: ${size.mobileButtonWidth};
       height: ${size.mobileButtonHeight};
+      font-size: 1rem;
     }
   }
 `;

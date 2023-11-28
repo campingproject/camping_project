@@ -9,9 +9,9 @@ const color = {
 };
 const size = {
   buttonWidth: '22vw',
-  buttonHeight: '6.4vh',
-  tabletButtonWidth: '35vw',
-  tableButtonHeight: '5.2vh',
+  buttonHeight: '6.5vh',
+  tabletButtonWidth: '52vw',
+  tableButtonHeight: '5.7vh',
   mobileButtonWidth: '72vw',
   mobileButtonHeight: '7.5vh',
 };

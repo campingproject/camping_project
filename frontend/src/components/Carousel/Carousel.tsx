@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import Image from "next/image";
-import useEmblaCarousel from "embla-carousel-react";
-import { svgType } from "@/types";
-import { useEffect, useState } from "react";
-import { Sizes } from "@/styles";
+import styled from 'styled-components';
+import Image from 'next/image';
+import useEmblaCarousel from 'embla-carousel-react';
+import { svgType } from '@/types';
+import { useEffect, useState } from 'react';
+import { Sizes } from '@/styles';
 
 const Embla = styled.div`
   --slide-spacing: 1rem;
@@ -43,13 +43,12 @@ const SlidImg = styled.div`
 `;
 
 export default function Carousel({ props }: { props: svgType[] }) {
-  const [width, setWidth] = useState(window.innerWidth);
-  const [imageWidth, setImageWidth] = useState(0);
+  const [width, setWidth] = useState(0);
   const [viewportRef] = useEmblaCarousel({
     loop: false,
-    align: "start",
-    slidesToScroll: "auto",
-    containScroll: "trimSnaps",
+    align: 'start',
+    slidesToScroll: 'auto',
+    containScroll: 'trimSnaps',
   });
 
   const handleResize = () => {
@@ -57,9 +56,10 @@ export default function Carousel({ props }: { props: svgType[] }) {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    if (window) setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 

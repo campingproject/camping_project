@@ -1,6 +1,6 @@
 import { svgType } from '@/types';
 import * as Main from '@/styles';
-import Carousel from '@/components/Carousel';
+import Carousel from '@/components/common/Carousel';
 
 export default function HotCamping({ props }: { props: svgType[] }) {
   return (

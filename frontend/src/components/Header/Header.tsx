@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Logo } from '../Logo';
+import { Logo } from '../common/Logo';
 import { SearchBar } from '../SearchBar';
 import { HeaderContainer } from './Header.style';
 import { MenuIcon } from '@/public/svgs';

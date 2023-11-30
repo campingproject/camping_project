@@ -1,12 +1,12 @@
-import * as Main from '@/styles/';
-import Carousel from '@/components/Carousel';
+import * as Main from '@/styles';
+import Carousel from '@/components/common/Carousel';
 import { svgType } from '@/types';
 
-export default function BestCamping({ props }: { props: svgType[] }) {
+export default function NewCamping({ props }: { props: svgType[] }) {
   return (
     <Main.Container>
       <Main.Title>
-        <span style={{ color: '#ff5252' }}>실시간 인기 Best 3</span>
+        <span>새로 추가 되었어요!</span>
         <hr />
       </Main.Title>
       <Main.Content>

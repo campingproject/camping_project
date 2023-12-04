@@ -13,3 +13,5 @@ export { default as Hot3 } from './hot3.svg';
 export { default as LogoIcon } from './logo.svg';
 export { default as MenuIcon } from './MenuIcon.svg';
 export { default as SearchIcon } from './SearchIcon.svg';
+export { default as placeSampleImg1 } from './placeSampleImg1.svg';
+export { default as placeSampleImg2 } from './placeSampleImg2.svg';

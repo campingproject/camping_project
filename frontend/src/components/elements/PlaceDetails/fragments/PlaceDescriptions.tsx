@@ -2,15 +2,16 @@
 import { PlaceDescContainer } from './PlaceDescriptions.styles';
 
 interface PlaceDescriptionsProps {
-  modalOpen: boolean;
+  viewAllImages: boolean;
+  placeData: any;
 }
-function PlaceDescriptions({ modalOpen }: PlaceDescriptionsProps) {
+function PlaceDescriptions({ viewAllImages, placeData }: PlaceDescriptionsProps) {
   return (
-    <PlaceDescContainer style={{ display: modalOpen ? 'none' : 'block' }}>
+    <PlaceDescContainer style={{ display: viewAllImages ? 'none' : 'block' }}>
       <ul>
-        <li>캠핑장명</li>
-        <li>캠핑장 주소지</li>
-        <li>캠핑장 설명</li>
+        <li>{placeData.name}</li>
+        <li>{placeData.address}</li>
+        <li>{placeData.description}</li>
       </ul>
     </PlaceDescContainer>
   );

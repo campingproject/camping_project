@@ -8,7 +8,7 @@ export const PlaceDescContainer = styled.section`
     margin-bottom: 10px;
     li:nth-child(1),
     li:nth-child(2) {
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       color: ${Theme.colors.gray500};
     }
     li:nth-child(1) {
@@ -20,6 +20,14 @@ export const PlaceDescContainer = styled.section`
     }
     li:nth-child(3) {
       color: ${Theme.colors.gray400};
+      line-height: 1.3;
+    }
+
+    @media screen and (max-width: ${Theme.screen.tablet}) {
+    }
+
+    @media screen and (max-width: ${Theme.screen.mobile}) {
+      margin-top: 0px;
     }
   }
 `;

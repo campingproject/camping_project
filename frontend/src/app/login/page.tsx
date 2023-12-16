@@ -1,6 +1,6 @@
 'use client';
 
-import { Logo } from '@/components/Logo';
+import { Logo } from '@/components/common/Logo';
 import { StyledMain } from './Login.styles';
 import Link from 'next/link';
 import { kakaoIcon, naverIcon } from '@/public/svgs';

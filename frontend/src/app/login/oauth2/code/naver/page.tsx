@@ -2,9 +2,10 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-function OauthRedirectedPage() {
+function NaverRedirectedPage() {
   const router = useRouter();
-  // const code = new URL(window.location.href).searchParams.get('code');
+  const code = new URL(window.location.href).searchParams.get('code');
+  console.log('인가코드: ' + code);
   const sendAuthCode = async () => {
     try {
       // 서버로 API 요청을 보냄
@@ -28,6 +29,6 @@ function OauthRedirectedPage() {
     sendAuthCode();
   }, []);
 
-  return <div>OauthRedirectedPage... 로그인 중입니다.</div>;
+  return <div>NaverRedirectedPage... 로그인 중입니다.</div>;
 }
-export default OauthRedirectedPage;
+export default NaverRedirectedPage;

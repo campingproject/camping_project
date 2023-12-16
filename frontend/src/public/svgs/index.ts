@@ -15,3 +15,8 @@ export { default as kakaoIcon } from './icon_kakao.svg';
 export { default as naverIcon } from './icon_naver.svg';
 export { default as MenuIcon } from './MenuIcon.svg';
 export { default as SearchIcon } from './SearchIcon.svg';
+export { default as placeSampleImg1 } from './placeSampleImg1.svg';
+export { default as placeSampleImg2 } from './placeSampleImg2.svg';
+export { default as prevArrowIcon } from './icon_prevArrow.svg';
+export { default as prevImageIcon } from './icon_prevImage.svg';
+export { default as nextImageIcon } from './icon_nextImage.svg';

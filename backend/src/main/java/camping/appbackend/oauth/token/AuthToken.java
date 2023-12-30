@@ -8,6 +8,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
 import java.security.Key;
 import java.util.Date;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -53,17 +54,13 @@ public class AuthToken {
                 .compact();
     }
 
-    public boolean validate() {
-        return this.getTokenClaims() != null;
-    }
-
-    public Claims getTokenClaims() {
+    public Optional<Claims> getTokenClaims() {
         try {
-            return Jwts.parserBuilder()
+            return Optional.of(Jwts.parserBuilder()
                     .setSigningKey(key)
                     .build()
                     .parseClaimsJws(token)
-                    .getBody();
+                    .getBody());
         } catch (SecurityException e) {
             log.info("잘못된 JWT 서명입니다.");
         } catch (MalformedJwtException e) {
@@ -75,21 +72,8 @@ public class AuthToken {
         } catch (IllegalArgumentException e) {
             log.info("JWT 토큰이 잘못되었습니다.");
         }
-        return null;
+        return Optional.empty();
     }
 
-    public Claims getExpiredTokenClaims() {
-        try {
-            Jwts.parserBuilder()
-                    .setSigningKey(key)
-                    .build()
-                    .parseClaimsJws(token)
-                    .getBody();
-        } catch (ExpiredJwtException e) {
-            log.info("Expired JWT token.");
-            return e.getClaims();
-        }
-        return null;
-    }
 }
 

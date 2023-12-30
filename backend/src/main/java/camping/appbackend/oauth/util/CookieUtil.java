@@ -14,13 +14,13 @@ public class CookieUtil {
      */
     public static String getAccessToken(HttpServletRequest request) {
         Optional<Cookie> cookie = getCookie(request, "access_token");
-        return cookie.isEmpty() ? null : cookie.get().getValue();
+        return cookie.map(Cookie::getValue).orElse(null);
     }
 
     public static Optional<Cookie> getCookie(HttpServletRequest request, String name) {
         Cookie[] cookies = request.getCookies();
 
-        if (cookies == null || cookies.length == 0) {
+        if (cookies == null) {
             return Optional.empty();
         }
 
@@ -55,7 +55,7 @@ public class CookieUtil {
     public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) {
         Cookie[] cookies = request.getCookies();
 
-        if (cookies == null || cookies.length == 0) {
+        if (cookies == null) {
             return;
         }
 

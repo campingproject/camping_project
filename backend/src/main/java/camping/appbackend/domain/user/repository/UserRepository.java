@@ -1,6 +1,6 @@
-package camping.appbackend.user.domain.repository;
+package camping.appbackend.domain.user.repository;
 
-import camping.appbackend.user.domain.entity.User;
+import camping.appbackend.domain.user.entity.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

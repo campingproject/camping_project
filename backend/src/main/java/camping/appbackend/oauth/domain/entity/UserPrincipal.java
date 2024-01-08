@@ -1,8 +1,8 @@
 package camping.appbackend.oauth.domain.entity;
 
-import camping.appbackend.user.domain.entity.User;
-import camping.appbackend.user.domain.entity.type.SocialType;
-import camping.appbackend.user.domain.entity.type.UserRoleType;
+import camping.appbackend.domain.user.entity.User;
+import camping.appbackend.domain.user.entity.type.SocialType;
+import camping.appbackend.domain.user.entity.type.UserRoleType;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;

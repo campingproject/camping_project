@@ -1,4 +1,4 @@
-package camping.appbackend.user.domain.entity.type;
+package camping.appbackend.domain.user.entity.type;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

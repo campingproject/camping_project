@@ -1,6 +1,6 @@
 package camping.appbackend.common.response;
 
-import camping.appbackend.common.exception.ErrorCode;
+import camping.appbackend.common.exception.ResultCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -14,16 +14,16 @@ public class ResponseDTO {
     private final Integer statusCode;
     private final String message;
 
-    public static ResponseDTO of(Boolean success, ErrorCode code) {
+    public static ResponseDTO of(Boolean success, ResultCode code) {
         return new ResponseDTO(success, code.getCode(), code.getMessage());
     }
 
-    public static ResponseDTO of(Boolean success, ErrorCode errorCode, Exception e) {
-        return new ResponseDTO(success, errorCode.getCode(), errorCode.getMessage(e));
+    public static ResponseDTO of(Boolean success, ResultCode resultCode, Exception e) {
+        return new ResponseDTO(success, resultCode.getCode(), resultCode.getMessage(e));
     }
 
-    public static ResponseDTO of(Boolean success, ErrorCode errorCode, String message) {
-        return new ResponseDTO(success, errorCode.getCode(), errorCode.getMessage(message));
+    public static ResponseDTO of(Boolean success, ResultCode resultCode, String message) {
+        return new ResponseDTO(success, resultCode.getCode(), resultCode.getMessage(message));
     }
 
 }

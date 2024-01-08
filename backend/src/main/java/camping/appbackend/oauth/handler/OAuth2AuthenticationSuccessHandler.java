@@ -6,16 +6,16 @@ import static camping.appbackend.oauth.domain.repository.OAuth2AuthorizationRequ
 import static camping.appbackend.oauth.domain.repository.OAuth2AuthorizationRequestBasedOnCookieRepository.REFRESH_TOKEN;
 
 import camping.appbackend.config.properties.AppProperties;
+import camping.appbackend.domain.user.entity.UserRefreshToken;
+import camping.appbackend.domain.user.entity.type.SocialType;
+import camping.appbackend.domain.user.entity.type.UserRoleType;
+import camping.appbackend.domain.user.repository.UserRefreshTokenRepository;
 import camping.appbackend.oauth.domain.repository.OAuth2AuthorizationRequestBasedOnCookieRepository;
 import camping.appbackend.oauth.info.OAuth2UserInfo;
 import camping.appbackend.oauth.info.OAuth2UserInfoFactory;
 import camping.appbackend.oauth.token.AuthToken;
 import camping.appbackend.oauth.token.AuthTokenProvider;
 import camping.appbackend.oauth.util.CookieUtil;
-import camping.appbackend.user.domain.entity.UserRefreshToken;
-import camping.appbackend.user.domain.entity.type.SocialType;
-import camping.appbackend.user.domain.entity.type.UserRoleType;
-import camping.appbackend.user.domain.repository.UserRefreshTokenRepository;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Collection;
@@ -98,7 +98,6 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
                 new Date(now.getTime() + refreshTokenExpiry)
         );
 
-        // DB 저장
         UserRefreshToken userRefreshToken = userRefreshTokenRepository.findByEmail(userInfo.getEmail())
                 .orElse(new UserRefreshToken(userInfo.getEmail(), refreshToken.getToken()));
 
@@ -108,15 +107,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         int cookieMaxAge = (int) refreshTokenExpiry / 60;
         int cookieMaxAgeForAccess = (int) appProperties.getAuth().getTokenExpiry() / 1000;
 
-        /*
-        Access Token 저장
-         */
         CookieUtil.deleteCookie(request, response, ACCESS_TOKEN);
         CookieUtil.addCookieForAccess(response, ACCESS_TOKEN, accessToken.getToken(), cookieMaxAgeForAccess);
 
-        /*
-        Refresh Token 저장
-         */
         CookieUtil.deleteCookie(request, response, REFRESH_TOKEN);
         CookieUtil.addCookie(response, REFRESH_TOKEN, refreshToken.getToken(), cookieMaxAge);
 

@@ -2,6 +2,7 @@ package camping.appbackend.config.security;
 
 import camping.appbackend.config.properties.AppProperties;
 import camping.appbackend.config.properties.CorsProperties;
+import camping.appbackend.domain.user.repository.UserRefreshTokenRepository;
 import camping.appbackend.oauth.domain.repository.OAuth2AuthorizationRequestBasedOnCookieRepository;
 import camping.appbackend.oauth.exception.RestAuthenticationEntryPoint;
 import camping.appbackend.oauth.filter.TokenAuthenticationFilter;
@@ -10,7 +11,6 @@ import camping.appbackend.oauth.handler.OAuth2AuthenticationSuccessHandler;
 import camping.appbackend.oauth.handler.TokenAccessDeniedHandler;
 import camping.appbackend.oauth.service.CustomOAuth2UserService;
 import camping.appbackend.oauth.token.AuthTokenProvider;
-import camping.appbackend.user.domain.repository.UserRefreshTokenRepository;
 import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -53,7 +53,6 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .antMatchers("/**").permitAll() // 일단 임시로 다 열어둠..
-                .antMatchers("/login").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .anyRequest().authenticated();
 

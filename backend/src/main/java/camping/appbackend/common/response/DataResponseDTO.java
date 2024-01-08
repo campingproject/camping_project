@@ -1,6 +1,6 @@
 package camping.appbackend.common.response;
 
-import camping.appbackend.common.exception.ErrorCode;
+import camping.appbackend.common.exception.ResultCode;
 import lombok.Getter;
 
 @Getter
@@ -9,12 +9,12 @@ public class DataResponseDTO<T> extends ResponseDTO {
     private final T data;
 
     private DataResponseDTO(T data) {
-        super(true, ErrorCode.OK.getCode(), ErrorCode.OK.getMessage());
+        super(true, ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage());
         this.data = data;
     }
 
     public DataResponseDTO(T data, String message) {
-        super(true, ErrorCode.OK.getCode(), message);
+        super(true, ResultCode.SUCCESS.getCode(), message);
         this.data = data;
     }
 

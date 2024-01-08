@@ -1,4 +1,4 @@
-package camping.appbackend.user.domain.entity;
+package camping.appbackend.domain.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;

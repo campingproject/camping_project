@@ -1,33 +1,33 @@
 package camping.appbackend.common.response;
 
-import camping.appbackend.common.exception.ErrorCode;
+import camping.appbackend.common.exception.ResultCode;
 import lombok.Getter;
 
 @Getter
 public class ErrorResponseDTO extends ResponseDTO {
 
-    private ErrorResponseDTO(ErrorCode code) {
+    private ErrorResponseDTO(ResultCode code) {
         super(false, code.getCode(), code.getMessage());
     }
 
-    private ErrorResponseDTO(ErrorCode code, Exception e) {
+    private ErrorResponseDTO(ResultCode code, Exception e) {
         super(false, code.getCode(), code.getMessage(e));
     }
 
-    private ErrorResponseDTO(ErrorCode code, String message) {
+    private ErrorResponseDTO(ResultCode code, String message) {
         super(false, code.getCode(), code.getMessage(message));
     }
 
 
-    public static ErrorResponseDTO of(ErrorCode code) {
+    public static ErrorResponseDTO of(ResultCode code) {
         return new ErrorResponseDTO(code);
     }
 
-    public static ErrorResponseDTO of(ErrorCode code, Exception e) {
+    public static ErrorResponseDTO of(ResultCode code, Exception e) {
         return new ErrorResponseDTO(code, e);
     }
 
-    public static ErrorResponseDTO of(ErrorCode code, String message) {
+    public static ErrorResponseDTO of(ResultCode code, String message) {
         return new ErrorResponseDTO(code, message);
     }
 }

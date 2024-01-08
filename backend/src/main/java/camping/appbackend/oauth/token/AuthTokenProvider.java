@@ -1,8 +1,8 @@
 package camping.appbackend.oauth.token;
 
+import camping.appbackend.domain.user.entity.User;
+import camping.appbackend.domain.user.repository.UserRepository;
 import camping.appbackend.oauth.exception.TokenValidFailedException;
-import camping.appbackend.user.domain.entity.User;
-import camping.appbackend.user.domain.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

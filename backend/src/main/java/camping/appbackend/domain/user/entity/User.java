@@ -1,8 +1,8 @@
-package camping.appbackend.user.domain.entity;
+package camping.appbackend.domain.user.entity;
 
 import camping.appbackend.common.base.BaseTimeEntity;
-import camping.appbackend.user.domain.entity.type.SocialType;
-import camping.appbackend.user.domain.entity.type.UserRoleType;
+import camping.appbackend.domain.user.entity.type.SocialType;
+import camping.appbackend.domain.user.entity.type.UserRoleType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

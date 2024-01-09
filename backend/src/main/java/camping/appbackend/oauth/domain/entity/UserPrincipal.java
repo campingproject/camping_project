@@ -1,5 +1,6 @@
 package camping.appbackend.oauth.domain.entity;
 
+
 import camping.appbackend.domain.user.entity.User;
 import camping.appbackend.domain.user.entity.type.SocialType;
 import camping.appbackend.domain.user.entity.type.UserRoleType;

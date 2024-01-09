@@ -1,5 +1,6 @@
 package camping.appbackend.oauth.info;
 
+
 import camping.appbackend.domain.user.entity.type.SocialType;
 import camping.appbackend.oauth.info.impl.KakaoOAuth2UserInfo;
 import camping.appbackend.oauth.info.impl.NaverOAuth2UserInfo;

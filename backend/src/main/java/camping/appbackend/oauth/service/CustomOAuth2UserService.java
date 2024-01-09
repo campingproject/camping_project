@@ -1,13 +1,16 @@
 package camping.appbackend.oauth.service;
 
+
 import camping.appbackend.domain.user.entity.User;
 import camping.appbackend.domain.user.entity.type.SocialType;
 import camping.appbackend.domain.user.entity.type.UserRoleType;
 import camping.appbackend.domain.user.repository.UserRepository;
+
 import camping.appbackend.oauth.domain.entity.UserPrincipal;
 import camping.appbackend.oauth.exception.OAuthProviderMissMatchException;
 import camping.appbackend.oauth.info.OAuth2UserInfo;
 import camping.appbackend.oauth.info.OAuth2UserInfoFactory;
+
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;

@@ -59,19 +59,16 @@ public class SecurityConfig {
         // oauth2
         http
                 .oauth2Login()
-                .authorizationEndpoint()
-                .baseUri("/oauth2/authorization")
+                .authorizationEndpoint().baseUri("/oauth2/authorization")
                 .authorizationRequestRepository(oAuth2AuthorizationRequestbasedOnCookieRepository())
                 .and()
-                .redirectionEndpoint()//endpoint로 인증요청을 받으면, Spring security의 Oauth2 사용자를 provider가 제공하는 AuthorizationUri로 Redirect
-                .baseUri("/*/oauth2/code/*") // 이 때, 사용자 인증코드 (authorization code)를 함께 갖고감
+                .redirectionEndpoint().baseUri("/*/oauth2/code/*")
                 .and()
                 .userInfoEndpoint() //Oauth2 로그인 성공 이후 사용자 정보를 가져올때의 설정 담당
                 .userService(oAuth2UserService) // 소셜 로그인 성공 시 후속조치를 진행할 UserService인터페이스의 구현체 등록
                 .and()
-                .successHandler(
-                        oAuth2AuthenticationSuccessHandler()) // JWT authentication token을 만들고, client가 정의한 redirect로 token을 갖고 넘어감
-                .failureHandler(oAuth2AuthenticationFailureHandler()); // 인증이 실패하면 error코드를 담은 uri를 넘겨줌
+                .successHandler(oAuth2AuthenticationSuccessHandler())
+                .failureHandler(oAuth2AuthenticationFailureHandler());
 
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();

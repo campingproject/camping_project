@@ -49,7 +49,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 userRequest.getClientRegistration().getRegistrationId().toUpperCase());
         OAuth2UserInfo userInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(socialType, user.getAttributes());
         Optional<User> checkUser = userRepository.findByEmail(userInfo.getEmail());
-        User savedUser = checkUser.isEmpty() ? createUser(userInfo, socialType) : checkUser.get();
+        User savedUser = checkUser.orElseGet(() -> createUser(userInfo, socialType));
 
         if (socialType != savedUser.getSocialType()) {
             throw new OAuthProviderMissMatchException("가입 경로가 잘못 되었습니다. " + savedUser.getSocialType() + "로 다시 로그인해주세요");
@@ -57,6 +57,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         return UserPrincipal.create(savedUser, user.getAttributes());
     }
+
 
     //TODO 카카오 권한문제로 닉네임, 생년, 핸드폰 번호등 받아올 수가 없음 ..
     private User createUser(OAuth2UserInfo userInfo, SocialType socialType) {

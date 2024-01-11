@@ -5,17 +5,41 @@ import { StyledMain } from './Login.styles';
 import Link from 'next/link';
 import { kakaoIcon, naverIcon } from '@/public/svgs';
 import { LoginButton } from '@/components/Login';
-import { KAKAO_AUTH_LOGIN_URI, NAVER_AUTH_LOGIN_URI } from '@/constants/oauth';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 function Login() {
-  const handleKakao = () => {
-    console.log('카카오 로그인 버튼 클릭');
-    window.location.href = KAKAO_AUTH_LOGIN_URI;
+  const router = useRouter();
+  const handleKakao = async () => {
+    try {
+      // window.location.href = `${process.env.NEXT_PUBLIC_KAKAO_AUTH_LOGIN_URI}`;
+      // window.location.href = 'http://43.200.131.69:9090/oauth2/authorization/kakao';
+      // window.location.href = `http://43.200.131.69:9090/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login/redirect`;
+
+      const response = await fetch(
+        // `http://43.200.131.69:9090/oauth2/authorization/kakao`,
+        `/oauth2/authorization/kakao`,
+        {
+          method: 'GET',
+          credentials: 'include', // credentials 옵션을 추가하여 쿠키 전송
+        },
+      );
+      console.log(response.headers);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleNaver = () => {
-    console.log('네이버 로그인 버튼 클릭');
-    window.location.href = NAVER_AUTH_LOGIN_URI;
+    window.location.href = `${process.env.NEXT_PUBLIC_NAVER_AUTH_LOGIN_URI}`;
   };
+
+  // 페이지 로딩 후 실행될 코드
+  useEffect(() => {
+    // 이 부분에서 로그인이 성공하면 리다이렉트 코드를 실행합니다.
+    // if (window.location.pathname === '/login/redirect') {
+    //   router.push('/');
+    // }
+  }, []);
 
   return (
     <StyledMain>

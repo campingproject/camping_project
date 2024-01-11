@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Theme from '@/styles/theme';
+import styled from "styled-components";
+import Theme from "@/styles/theme";
 
 export const SectionStyled = styled.section`
   width: 65vw;
@@ -38,7 +38,7 @@ export const SectionStyled = styled.section`
     }
   }
 
-  @media screen and (max-width: ${Theme.screen.tablet}) {
+  @media screen and (max-width: ${Theme.screen.pc}) {
     width: 80vw;
     .image-grid {
       grid-template-columns: repeat(2, 1fr);

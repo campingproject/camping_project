@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Theme from '@/styles/theme';
+import styled from "styled-components";
+import Theme from "@/styles/theme";
 
 export const PlaceDescContainer = styled.section`
   width: 80vw;
@@ -23,7 +23,7 @@ export const PlaceDescContainer = styled.section`
       line-height: 1.3;
     }
 
-    @media screen and (max-width: ${Theme.screen.tablet}) {
+    @media screen and (max-width: ${Theme.screen.pc}) {
     }
 
     @media screen and (max-width: ${Theme.screen.mobile}) {

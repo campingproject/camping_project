@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Theme from '@/styles/theme';
+import styled from "styled-components";
+import Theme from "@/styles/theme";
 
 export const CarouselModalSection = styled.section`
   display: block;
@@ -14,7 +14,7 @@ export const CarouselModalSection = styled.section`
     color: ${Theme.colors.gray400};
     cursor: pointer;
   }
-  @media screen and (max-width: ${Theme.screen.tablet}) {
+  @media screen and (max-width: ${Theme.screen.pc}) {
     width: 90vw;
   }
   @media screen and (max-width: ${Theme.screen.mobile}) {
@@ -55,7 +55,7 @@ export const CarouselContainer = styled.div`
     margin: auto;
   }
 
-  @media screen and (max-width: ${Theme.screen.tablet}) {
+  @media screen and (max-width: ${Theme.screen.pc}) {
     width: 95%;
     .embla_slide {
       width: 100%;

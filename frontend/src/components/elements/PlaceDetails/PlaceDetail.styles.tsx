@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Theme from '@/styles/theme';
+import styled from "styled-components";
+import Theme from "@/styles/theme";
 
 export const PlaceDetailContainer = styled.main`
   width: 100vw;
@@ -14,8 +14,8 @@ export const ImagesWrap = styled.div`
   margin-bottom: 20px;
   display: grid;
   grid-template-areas:
-    'img1 img2'
-    'img1 img3';
+    "img1 img2"
+    "img1 img3";
   grid-template-columns: 2fr 1fr;
   gap: 9px;
   img {
@@ -39,7 +39,7 @@ export const ImagesWrap = styled.div`
     max-height: 30vh;
   }
 
-  @media screen and (max-width: ${Theme.screen.tablet}) {
+  @media screen and (max-width: ${Theme.screen.pc}) {
     img:nth-child(1) {
       object-fit: fill;
       height: 100%;
@@ -50,11 +50,11 @@ export const ImagesWrap = styled.div`
       display: none;
     }
     grid-template-areas:
-      'img1 img1'
-      'img1 img1';
+      "img1 img1"
+      "img1 img1";
   }
 
-  @media screen and (max-width: ${Theme.screen.mobile}) {
+  @media screen and (max-width: ${Theme.screen.pc}) {
     img:nth-child(1) {
       object-fit: fill;
       height: 100%;
@@ -78,7 +78,7 @@ export const ButtonStyled = styled.button`
   cursor: pointer;
   visibility: visible;
 
-  @media screen and (max-width: ${Theme.screen.tablet}) {
+  @media screen and (max-width: ${Theme.screen.pc}) {
     visibility: hidden;
   }
 

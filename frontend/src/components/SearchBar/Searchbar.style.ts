@@ -1,12 +1,10 @@
-import Theme from '@/styles/theme';
-import styled from 'styled-components';
+import Theme from "@/styles/theme";
+import styled from "styled-components";
 
 export const SearchBarContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-
-  margin-top: 16px;
   background-color: ${Theme.colors.gray100};
   border-radius: 28px;
 `;
@@ -15,11 +13,13 @@ export const InputBox = styled.div<{ $open: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 120px;
   padding: 8px 16px;
+  width: 100%;
   gap: 4px;
   border-radius: 28px;
-  background-color: ${(props) => (props.$open ? `${Theme.colors.orange200}` : 'inherit')};
+  cursor: pointer;
+  background-color: ${(props) =>
+    props.$open ? `${Theme.colors.orange200}` : "inherit"};
 `;
 
 export const StyledInput = styled.input`

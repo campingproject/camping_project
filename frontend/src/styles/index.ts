@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-interface DeviceProps {
-  mobile: number;
-  tablet: number;
-}
-
-export const Sizes: DeviceProps = {
-  mobile: 480,
-  tablet: 1024,
-};
-
 export const Container = styled.div`
   position: relative;
   max-width: 90%;

@@ -66,6 +66,7 @@ public class CookieUtil {
                 cookie.setValue("");
                 cookie.setPath("/");
                 cookie.setMaxAge(0);
+                cookie.setSecure(false);
                 response.addCookie(cookie);
             }
         }

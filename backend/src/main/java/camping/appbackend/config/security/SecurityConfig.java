@@ -11,7 +11,7 @@ import camping.appbackend.oauth.handler.OAuth2AuthenticationSuccessHandler;
 import camping.appbackend.oauth.handler.TokenAccessDeniedHandler;
 import camping.appbackend.oauth.service.CustomOAuth2UserService;
 import camping.appbackend.oauth.token.AuthTokenProvider;
-import java.util.Arrays;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
@@ -51,7 +50,6 @@ public class SecurityConfig {
                 .accessDeniedHandler(tokenAccessDeniedHandler)
                 .and()
                 .authorizeRequests()
-                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .antMatchers("/**").permitAll() // 일단 임시로 다 열어둠..
                 .antMatchers("/swagger-resources/**").permitAll()
                 .anyRequest().authenticated();
@@ -109,17 +107,17 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    //Cors 설정
     @Bean
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource corsConfigSource = new UrlBasedCorsConfigurationSource();
 
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedHeaders(Arrays.asList(corsProperties.getAllowedHeaders().split(",")));
-        corsConfig.setAllowedMethods(Arrays.asList(corsProperties.getAllowedMethods().split(",")));
-        corsConfig.setAllowedOrigins(Arrays.asList(corsProperties.getAllowedOrigins().split(",")));
+        corsConfig.setAllowedHeaders(List.of("*"));
+        corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+        corsConfig.setAllowedOrigins(List.of("http://localhost:3000"));
+        corsConfig.setExposedHeaders(List.of("*"));
         corsConfig.setAllowCredentials(true);
-        corsConfig.setMaxAge(corsConfig.getMaxAge());
+        corsConfig.setMaxAge(3600L);
 
         corsConfigSource.registerCorsConfiguration("/**", corsConfig);
         return corsConfigSource;

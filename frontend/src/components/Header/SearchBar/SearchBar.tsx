@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { SearchBarDialog } from '../SearchBarDialog';
-import { DateRangePicker } from '../Header/DateRangePicker';
+import { DateRangePicker } from '../DateRangePicker';
 import { RegionTypes } from '@/types/region';
 import { SelectedDateRange } from '@/types/date';
 import {
@@ -15,8 +15,8 @@ import {
   SearchIconBox,
   Title,
 } from './Searchbar.style';
-import { RegionDialog } from '../Header/RegionDialog';
-import { PeopleDialog } from '../Header/PeopleDialog';
+import { RegionDialog } from '../RegionDialog';
+import { PeopleDialog } from '../PeopleDialog';
 import { SearchIcon } from '@/public/svgs';
 import Image from 'next/image';
 
@@ -88,8 +88,11 @@ export default function SearchBar() {
     <div style={{ width: '60%' }}>
       <SearchBarContainer>
         <InputBox $open={isDialogOpen && dialogType === '지역'} onClick={() => openDialog('지역')}>
-          <Title>지역</Title>
-          <Content>{region ?? '지역 선택'}</Content>
+          <div>
+            <Title>지역</Title>
+            <Content>{region ?? '지역 선택'}</Content>
+          </div>
+
           {isDialogOpen && dialogType === '지역' && (
             <SearchBarDialog ref={dialogRef}>
               <DialogContainer>
@@ -103,19 +106,25 @@ export default function SearchBar() {
           $open={isDialogOpen && dialogType === '체크인'}
           onClick={() => openDialog('체크인')}
         >
-          <Title>체크인</Title>
-          <Content>{startDate ?? '날짜 선택'}</Content>
+          <div>
+            <Title>체크인</Title>
+            <Content>{startDate ?? '날짜 선택'}</Content>
+          </div>
         </InputBox>
         <InputBox
           $open={isDialogOpen && dialogType === '체크아웃'}
           onClick={() => openDialog('체크아웃')}
         >
-          <Title>체크아웃</Title>
-          <Content>{endDate ?? '날짜 선택'}</Content>
+          <div>
+            <Title>체크아웃</Title>
+            <Content>{endDate ?? '날짜 선택'}</Content>
+          </div>
         </InputBox>
         <InputBox $open={isDialogOpen && dialogType === '인원'} onClick={() => openDialog('인원')}>
-          <Title>인원</Title>
-          <Content>{totalNumber === 0 ? '인원 선택' : `총 ${totalNumber} 명`}</Content>
+          <div>
+            <Title>인원</Title>
+            <Content>{totalNumber === 0 ? '인원 선택' : `총 ${totalNumber} 명`}</Content>
+          </div>
         </InputBox>
         <SearchIconBox onClick={handleSubmit}>
           <Image src={SearchIcon} alt={'search'} width={32} height={32} />

@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.domain.Page;
 
@@ -40,12 +41,13 @@ public class FreeBoardDTO {
 
 
     @Getter
+    @NoArgsConstructor
     public static class Response {
 
-        private final Long id;
-        private final String title;
-        private final String content;
-        private final String writer;
+        private Long id;
+        private String title;
+        private String content;
+        private String writer;
 
         public Response(final FreeBoard board) {
             id = board.getId();

@@ -10,7 +10,6 @@ import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,14 +37,14 @@ public class FreeBoardController {
         return DataResponseDTO.of(freeBoardService.getBoard(id));
     }
 
-    @PreAuthorize("hasAuthority('USER')")
+    //    @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "자유게시판 글 등록")
     @PostMapping("register")
     public DataResponseDTO<Long> register(@Valid Request request) {
         return DataResponseDTO.of(freeBoardService.saveBoard(request));
     }
 
-    @PreAuthorize("hasAuthority('USER')")
+    //    @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "자유게시판 글 수정")
     @PutMapping("modify/{id}")
     public DataResponseDTO<Long> modify(@PathVariable Long id, Request request) {
@@ -53,7 +52,7 @@ public class FreeBoardController {
         return DataResponseDTO.of(id);
     }
 
-    @PreAuthorize("hasAuthority('USER')")
+    //    @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "자유게시판 글 삭제")
     @DeleteMapping("delete/{id}")
     public DataResponseDTO<Object> delete(@PathVariable Long id, @PathVariable String email) {

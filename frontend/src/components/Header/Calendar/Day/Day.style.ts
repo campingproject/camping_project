@@ -1,4 +1,4 @@
-import Theme from '../../../styles/theme';
+import Theme from '../../../../styles/theme';
 import styled from 'styled-components';
 
 export const DayContainer = styled.div<{

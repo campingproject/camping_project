@@ -1,5 +1,5 @@
-import Theme from "@/styles/theme";
-import styled from "styled-components";
+import Theme from '@/styles/theme';
+import styled from 'styled-components';
 
 export const SearchBarContainer = styled.div`
   position: relative;
@@ -17,9 +17,7 @@ export const InputBox = styled.div<{ $open: boolean }>`
   width: 100%;
   gap: 4px;
   border-radius: 28px;
-  cursor: pointer;
-  background-color: ${(props) =>
-    props.$open ? `${Theme.colors.orange200}` : "inherit"};
+  background-color: ${(props) => (props.$open ? `${Theme.colors.orange200}` : 'inherit')};
 `;
 
 export const StyledInput = styled.input`

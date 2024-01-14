@@ -1,15 +1,14 @@
 package camping.appbackend.domain.free.controller;
 
+import camping.appbackend.common.paging.PageRequestDTO;
 import camping.appbackend.common.response.DataResponseDTO;
-import camping.appbackend.domain.free.dto.FreeBoardDTO.PageResponse;
 import camping.appbackend.domain.free.dto.FreeBoardDTO.Request;
 import camping.appbackend.domain.free.dto.FreeBoardDTO.Response;
 import camping.appbackend.domain.free.service.FreeBoardService;
 import io.swagger.v3.oas.annotations.Operation;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,8 +26,8 @@ public class FreeBoardController {
 
     @Operation(summary = "자유게시판 게시글 조회")
     @GetMapping("/list")
-    public DataResponseDTO<PageResponse> board(@PageableDefault(page = 1) Pageable pageable) {
-        return DataResponseDTO.of(freeBoardService.getBoards(pageable));
+    public DataResponseDTO<Page<Response>> board(PageRequestDTO pageRequestDTO) {
+        return DataResponseDTO.of(freeBoardService.getBoards(pageRequestDTO));
     }
 
     @Operation(summary = "자유게시판 글 상세보기")

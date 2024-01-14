@@ -27,6 +27,7 @@ public class FreeBoardQueryRepository {
                 .from(freeBoard)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
+                .orderBy(freeBoard.id.desc())
                 .fetch();
 
         Long count = queryFactory
@@ -37,6 +38,5 @@ public class FreeBoardQueryRepository {
         long totalCount = (count != null) ? count : 0;
 
         return new PageImpl<>(result, pageable, totalCount);
-
     }
 }

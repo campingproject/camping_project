@@ -9,7 +9,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.data.domain.Page;
 
 public class FreeBoardDTO {
 
@@ -42,6 +41,7 @@ public class FreeBoardDTO {
 
     @Getter
     @NoArgsConstructor
+    @ToString
     public static class Response {
 
         private Long id;
@@ -54,21 +54,6 @@ public class FreeBoardDTO {
             title = board.getTitle();
             content = board.getContent();
             writer = board.getWriter();
-        }
-    }
-
-
-    @Getter
-    public static class PageResponse {
-
-        private final Page<Response> boardList;
-        private final int startPage;
-        private final int endPage;
-
-        public PageResponse(final Page<Response> boardList, final int startPage, final int endPage) {
-            this.boardList = boardList;
-            this.startPage = startPage;
-            this.endPage = endPage;
         }
     }
 }

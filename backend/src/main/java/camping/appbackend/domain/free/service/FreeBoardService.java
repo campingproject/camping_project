@@ -5,8 +5,8 @@ import static camping.appbackend.common.exception.ResultCode.BOARD_NOT_PERMISSIO
 import static camping.appbackend.common.exception.ResultCode.USER_NOT_EXISTS;
 
 import camping.appbackend.common.exception.BaseException;
+import camping.appbackend.common.paging.PageRequestDTO;
 import camping.appbackend.domain.free.dto.FreeBoardDTO;
-import camping.appbackend.domain.free.dto.FreeBoardDTO.PageResponse;
 import camping.appbackend.domain.free.dto.FreeBoardDTO.Response;
 import camping.appbackend.domain.free.entity.FreeBoard;
 import camping.appbackend.domain.free.repository.FreeBoardQueryRepository;
@@ -17,10 +17,7 @@ import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,18 +32,9 @@ public class FreeBoardService {
     private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public PageResponse getBoards(Pageable pageable) {
-        int page = pageable.getPageNumber() - 1;
-        int pageLimit = 12;
-
-        Page<Response> boardList = freeBoardQueryRepository.findByPage(
-                PageRequest.of(page, pageLimit, Sort.by(Direction.DESC, "id")));
-
-        int blockLimit = 3;
-        int startPage = ((int) Math.ceil((double) pageable.getPageNumber() / blockLimit) - 1) * blockLimit + 1;
-        int endPage = Math.min((startPage + blockLimit - 1), boardList.getTotalPages());
-
-        return new FreeBoardDTO.PageResponse(boardList, startPage, endPage);
+    public Page<Response> getBoards(PageRequestDTO pageRequestDTO) {
+        Pageable pageable = pageRequestDTO.toPageable();
+        return freeBoardQueryRepository.findByPage(pageable);
     }
 
     @Transactional(readOnly = true)

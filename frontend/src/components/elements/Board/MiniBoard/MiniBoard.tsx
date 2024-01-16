@@ -1,15 +1,15 @@
-import Image from 'next/image';
-import { Title, Container, Content, ContentBox, Star, BoxText } from './MiniBoard.style';
-import { boardImage1, boardImage2 } from '@/public/svgs';
-import useWindowWidth from '@/hooks/useWindowWidth';
-import Theme from '@/styles/theme';
-import { useEffect } from 'react';
+import {
+  Title,
+  Container,
+  Content,
+  ContentBox,
+  Star,
+  BoxText,
+  StyledImage,
+} from "./MiniBoard.style";
+import { boardImage1, boardImage2 } from "@/public/svgs";
 
 export default function MiniBoard() {
-  const innerWidth = useWindowWidth();
-  useEffect(() => {
-    console.log(innerWidth);
-  });
   return (
     <Container>
       <Title>
@@ -18,11 +18,7 @@ export default function MiniBoard() {
       </Title>
       <Content>
         <ContentBox>
-          <Image
-            width={innerWidth < Theme.window.pc ? 130 : 200}
-            src={boardImage1}
-            alt={'메인이미지'}
-          />
+          <StyledImage src={boardImage1} alt={"캠핑한컷_이미지"} />
           <p>000 캠핑장</p>
           <Star>
             {Array.from({ length: 5 }, () => (
@@ -33,11 +29,7 @@ export default function MiniBoard() {
           <BoxText>가격이 합리적이에요, 바다 뷰가 최고</BoxText>
         </ContentBox>
         <ContentBox>
-          <Image
-            width={innerWidth < Theme.window.pc ? 130 : 200}
-            src={boardImage1}
-            alt={'메인이미지'}
-          />
+          <StyledImage src={boardImage1} alt={"메인이미지"} />
           <p>000 캠핑장</p>
           <Star>
             {Array.from({ length: 5 }, () => (
@@ -48,11 +40,7 @@ export default function MiniBoard() {
           <BoxText>가격이 합리적이에요, 바다 뷰가 최고</BoxText>
         </ContentBox>
         <ContentBox>
-          <Image
-            width={innerWidth < Theme.window.pc ? 130 : 200}
-            src={boardImage2}
-            alt={'메인이미지'}
-          />
+          <StyledImage src={boardImage2} alt={"메인이미지"} />
           <p>000 캠핑장</p>
           <Star>
             {Array.from({ length: 4 }, () => (
@@ -63,11 +51,7 @@ export default function MiniBoard() {
           <BoxText>매너타임을 철저하게 지키는 곳이어서 좋았습니다.</BoxText>
         </ContentBox>
         <ContentBox>
-          <Image
-            width={innerWidth < Theme.window.pc ? 130 : 200}
-            src={boardImage2}
-            alt={'메인이미지'}
-          />
+          <StyledImage src={boardImage2} alt={"메인이미지"} />
           <p>000 캠핑장</p>
           <Star>
             {Array.from({ length: 4 }, () => (
@@ -78,11 +62,7 @@ export default function MiniBoard() {
           <BoxText>매너타임을 철저하게 지키는 곳이어서 좋았습니다.</BoxText>
         </ContentBox>
         <ContentBox>
-          <Image
-            width={innerWidth < Theme.window.pc ? 130 : 200}
-            src={boardImage1}
-            alt={'메인이미지'}
-          />
+          <StyledImage src={boardImage1} alt={"메인이미지"} />
           <p>000 캠핑장</p>
           <Star>
             {Array.from({ length: 3 }, () => (
@@ -93,11 +73,7 @@ export default function MiniBoard() {
           <BoxText>가격이 합리적이에요, 바다 뷰가 최고</BoxText>
         </ContentBox>
         <ContentBox>
-          <Image
-            width={innerWidth < Theme.window.pc ? 130 : 200}
-            src={boardImage1}
-            alt={'메인이미지'}
-          />
+          <StyledImage src={boardImage1} alt={"메인이미지"} />
           <p>000 캠핑장</p>
           <Star>
             {Array.from({ length: 5 }, () => (

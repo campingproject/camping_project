@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import Image from "next/image";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  margin-top: 30px;
+  margin: 30px 0px;
   width: 100%;
 `;
 
@@ -32,7 +33,7 @@ export const Content = styled.div`
   padding-bottom: 20px;
   &::-webkit-scrollbar {
     width: 5px; /* 세로축 스크롤바 폭 너비 */
-    height: 20px; /* 가로축 스크롤바 폭 너비 */
+    height: 15px; /* 가로축 스크롤바 폭 너비 */
   }
   &::-webkit-scrollbar-thumb {
     background: #f5cc68; /* 스크롤바 막대 색상 */
@@ -43,6 +44,7 @@ export const Content = styled.div`
 export const ContentBox = styled.div`
   border-radius: 1rem;
   border: 1px solid #9c9c9c;
+  cursor: pointer;
   min-width: 20%;
   text-align: center;
   padding: 20px 0px;
@@ -54,16 +56,23 @@ export const ContentBox = styled.div`
     margin-right: 0px;
   }
   p {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
     font-family: sans-serif;
   }
   @media screen and (min-width: 480px) and (max-width: 768px) {
-    min-width: 40%;
+    min-width: 50%;
   }
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     min-width: 30%;
   }
+  @media screen and (max-width: 479px) {
+    min-width: 100%;
+  }
+`;
+
+export const StyledImage = styled(Image)`
+  width: 70%;
 `;
 
 export const Star = styled.div`

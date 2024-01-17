@@ -48,31 +48,33 @@ function CarouselModal({ images, currentIndex, onClose }: CarouselModalProp) {
   };
 
   return (
-    <Styled.CarouselModalSection>
-      <button className="close_button" onClick={onClose}>
-        ✕ 닫기
-      </button>
-      <Styled.ImageIndex>{`${
-        selectedImageIndex !== null ? selectedImageIndex + 1 : ''
-      } / ${totalImagesCount}`}</Styled.ImageIndex>
-      <Styled.CarouselContainer ref={viewportRef}>
-        <button onClick={handlePrev}>
-          <Image src={prevImageIcon} alt="prevImageIcon" />
+    <Styled.CarouselModalBox>
+      <Styled.CarouselModalContent>
+        <button className="close_button" onClick={onClose}>
+          ✕ 닫기
         </button>
-        {images.map((image, index) => (
-          <div
-            className="embla_slide"
-            key={index}
-            style={{ display: index === selectedImageIndex ? 'block' : 'none' }}
-          >
-            <Image src={image} alt={`image_${index + 1}`} width={0} height={0} />
-          </div>
-        ))}
-        <button onClick={handleNext}>
-          <Image src={nextImageIcon} alt="nextImageIcon" />
-        </button>
-      </Styled.CarouselContainer>
-    </Styled.CarouselModalSection>
+        <Styled.ImageIndex>{`${
+          selectedImageIndex !== null ? selectedImageIndex + 1 : ''
+        } / ${totalImagesCount}`}</Styled.ImageIndex>
+        <Styled.CarouselContainer ref={viewportRef}>
+          <button onClick={handlePrev}>
+            <Image src={prevImageIcon} alt="prevImageIcon" />
+          </button>
+          {images.map((image, index) => (
+            <div
+              className="embla_slide"
+              key={index}
+              style={{ display: index === selectedImageIndex ? 'block' : 'none' }}
+            >
+              <Image src={image} alt={`image_${index + 1}`} width={0} height={0} />
+            </div>
+          ))}
+          <button onClick={handleNext}>
+            <Image src={nextImageIcon} alt="nextImageIcon" />
+          </button>
+        </Styled.CarouselContainer>
+      </Styled.CarouselModalContent>
+    </Styled.CarouselModalBox>
   );
 }
 

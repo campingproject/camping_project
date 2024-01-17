@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
-import PlaceDescriptions from './fragments/PlaceDescriptions';
-import PlaceImagesModal from './fragments/PlaceImagesModal';
-import { ButtonStyled, ImagesWrap, PlaceDetailContainer } from './PlaceDetail.styles';
+import PlaceDescriptions from './fragments/PlaceDescriptions/PlaceDescriptions';
+import PlaceImagesModal from './fragments/PlaceImagesModal/PlaceImagesModal';
+import * as Styled from './PlaceDetail.styles';
 import Image from 'next/image';
 import { PlaceData } from '@/types/place';
 
@@ -21,20 +21,16 @@ function PlaceDetails({ data }: PlaceDatilsProps) {
   const mainImages = data?.images.slice(0, 3);
 
   return (
-    <PlaceDetailContainer>
-      <ImagesWrap onClick={openModal} style={{ display: viewAllImages ? 'none' : 'grid' }}>
+    <Styled.Container>
+      <Styled.ImagesWrap onClick={openModal}>
         {mainImages.map((image, i) => (
           <Image src={image} alt={image} width={0} height={0} key={i} priority />
         ))}
-        <ButtonStyled style={{ display: viewAllImages ? 'none' : 'block' }} onClick={openModal}>
-          사진 모두 보기
-        </ButtonStyled>
-      </ImagesWrap>
+        <Styled.Button onClick={openModal}>사진 모두 보기</Styled.Button>
+      </Styled.ImagesWrap>
       {viewAllImages && <PlaceImagesModal images={data?.images} closeModal={closeModal} />}
       <PlaceDescriptions viewAllImages={viewAllImages} placeData={data} />
-
-      {/* <section style={{ display: viewAllImages ? 'none' : 'block' }}>예약 정보 컴포넌트</section> */}
-    </PlaceDetailContainer>
+    </Styled.Container>
   );
 }
 

@@ -13,4 +13,4 @@ COPY ${JAR_FILE} app.jar
 #COPY security/application.yml application.yml
 
 # 빌드된 이미지가 실행될 때 실행할 명령어
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar", "--spring.config.location=classpath:/,classpath:/security/"]

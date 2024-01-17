@@ -5,6 +5,7 @@ import camping.appbackend.common.response.DataResponseDTO;
 import camping.appbackend.domain.free.dto.FreeBoardDTO.Request;
 import camping.appbackend.domain.free.dto.FreeBoardDTO.Response;
 import camping.appbackend.domain.free.service.FreeBoardService;
+import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(tags = "자유게시판 API")
 @RequestMapping("/free/board")
 @RequiredArgsConstructor
 @RestController

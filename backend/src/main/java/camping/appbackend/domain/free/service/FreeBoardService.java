@@ -63,7 +63,7 @@ public class FreeBoardService {
             throw new BaseException(BOARD_NOT_PERMISSION);
         }
 
-        board.update(request.getTitle(), request.getContent());
+        board.update(request.getTitle(), request.getContent(), request.getThumbnailUrl());
 
     }
 

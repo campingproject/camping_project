@@ -25,7 +25,8 @@ public enum ResultCode {
     BOARD_NOT_PERMISSION(11001, HttpStatus.FORBIDDEN, "Permission denied for Board"),
 
     USER_NOT_EXISTS(12000, HttpStatus.NOT_FOUND, "User Not Exists"),
-    ;
+
+    IMAGE_NOT_EXISTS(13000, HttpStatus.NOT_FOUND, "image Not Exists");
 
 
     private final Integer code;

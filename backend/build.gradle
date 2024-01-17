@@ -41,6 +41,7 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.33'
 	runtimeOnly group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 
 
 	//jwt
@@ -64,6 +65,8 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
+	// aws s3
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 }
 
 tasks.named('test') {

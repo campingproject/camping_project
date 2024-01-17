@@ -17,7 +17,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.annotation.CreatedBy;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -39,26 +38,30 @@ public class FreeBoard extends BaseTimeEntity {
     @Column(nullable = false)
     private String content;
 
+    @Comment("썸네일")
+    private String thumbnailUrl;
+
     @Comment("작성자")
     @Column(length = 100, nullable = false)
-    @CreatedBy
     private String writer;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    public void update(String title, String content) {
+    public void update(String title, String content, String thumbnail) {
         this.title = title;
         this.content = content;
+        this.thumbnailUrl = thumbnail;
     }
 
 
     @Builder
-    public FreeBoard(String title, String content, String writer, User user) {
+    public FreeBoard(String title, String content, String thumbnailUrl, String writer, User user) {
         this.title = title;
         this.content = content;
         this.writer = writer;
+        this.thumbnailUrl = thumbnailUrl;
         this.user = user;
     }
 }

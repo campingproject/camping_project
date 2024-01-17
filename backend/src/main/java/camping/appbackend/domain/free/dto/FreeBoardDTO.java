@@ -28,14 +28,19 @@ public class FreeBoardDTO {
         @NotBlank(message = "이메일을 입력해주세요")
         private String email;
 
+        private String thumbnailUrl;
+
         public FreeBoard toEntity(User user) {
             return FreeBoard.builder()
                     .title(title)
                     .content(content)
+                    .thumbnailUrl(thumbnailUrl)
                     .writer(user.getNickName())
                     .user(user)
                     .build();
         }
+
+
     }
 
 
@@ -48,12 +53,15 @@ public class FreeBoardDTO {
         private String title;
         private String content;
         private String writer;
+        private String thumbnailUrl;
 
         public Response(final FreeBoard board) {
             id = board.getId();
             title = board.getTitle();
             content = board.getContent();
             writer = board.getWriter();
+            thumbnailUrl = board.getThumbnailUrl();
         }
     }
+
 }

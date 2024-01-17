@@ -26,9 +26,9 @@ export default function PeopleDialog({ title, description, state, setStateValue 
       </TitleBox>
       <ButtonBox>
         <button disabled={state === 0} onClick={handleMinus}>
-          -
+          –
         </button>
-        <span>{state}</span>
+        <div>{state}</div>
         <button onClick={handlePlus}>+</button>
       </ButtonBox>
     </Container>

@@ -26,6 +26,47 @@ export const OptionsContainer = styled.div`
   border: 1px solid ${Theme.colors.gray200};
 `;
 
+export const DateWrap = styled.div`
+  display: flex;
+`;
+export const DateBox = styled.div<{ $open: boolean }>`
+  display: flex;
+  padding: 20px;
+  width: 50%;
+
+  ul {
+    font-weight: ${(props) => (props.$open ? 'bold' : 'none')};
+    &:hover {
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
+  ul:nth-child(2) {
+    border-left: 1px solid ${Theme.colors.gray200};
+    padding-left: 15px;
+    margin: auto;
+  }
+  li {
+    padding: 2px;
+    font-size: ${Theme.fontSize.large};
+  }
+  li:nth-child(2) {
+    padding-top: 8px;
+    font-size: ${Theme.fontSize.medium};
+  }
+
+  @media screen and (max-width: ${Theme.screen.mobile}) {
+    li {
+      padding: 2px;
+      font-size: ${Theme.fontSize.medium};
+    }
+    li:nth-child(2) {
+      padding-top: 6px;
+      font-size: ${Theme.fontSize.small};
+    }
+  }
+`;
+
 export const LinkWrap = styled.div`
   width: 100%;
   display: flex;

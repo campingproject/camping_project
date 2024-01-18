@@ -6,6 +6,7 @@ import static camping.appbackend.common.exception.ResultCode.USER_NOT_EXISTS;
 
 import camping.appbackend.common.exception.BaseException;
 import camping.appbackend.common.paging.PageRequestDTO;
+import camping.appbackend.domain.aws.service.S3Service;
 import camping.appbackend.domain.free.dto.FreeBoardDTO;
 import camping.appbackend.domain.free.dto.FreeBoardDTO.Response;
 import camping.appbackend.domain.free.entity.FreeBoard;
@@ -30,6 +31,7 @@ public class FreeBoardService {
     private final FreeBoardRepository freeBoardRepository;
     private final FreeBoardQueryRepository freeBoardQueryRepository;
     private final UserRepository userRepository;
+    private final S3Service s3Service;
 
     @Transactional(readOnly = true)
     public Page<Response> getBoards(PageRequestDTO pageRequestDTO) {
@@ -68,6 +70,7 @@ public class FreeBoardService {
     }
 
     public void deleteBoard(Long id, String email) {
+
         FreeBoard board = freeBoardRepository.findById(id)
                 .orElseThrow(() -> new BaseException(BOARD_NOT_FOUND));
 
@@ -79,6 +82,8 @@ public class FreeBoardService {
         }
 
         freeBoardRepository.delete(board);
+        s3Service.deleteImagesWithPattern(board.getContent());
+
     }
 
 }

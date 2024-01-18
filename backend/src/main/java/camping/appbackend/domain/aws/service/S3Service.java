@@ -1,20 +1,22 @@
 package camping.appbackend.domain.aws.service;
 
-import camping.appbackend.common.exception.BaseException;
-import camping.appbackend.common.exception.ResultCode;
 import com.amazonaws.HttpMethod;
-import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -27,12 +29,28 @@ public class S3Service {
 
     private final AmazonS3 amazonS3;
 
-    public void deleteImage(String fileName) {
-        try {
-            amazonS3.deleteObject(bucket, fileName);
-        } catch (SdkClientException e) {
-            throw new BaseException(ResultCode.IMAGE_NOT_EXISTS);
+    @Async
+    public void deleteImagesWithPattern(String content) {
+        List<String> fileNameList = extractAllFileNamesAndExtensions(content);
+        fileNameList.forEach(this::deleteImage);
+    }
+
+    public static List<String> extractAllFileNamesAndExtensions(String content) {
+        List<String> fileNameList = new ArrayList<>();
+
+        String pattern = "leegangeun-bucket.s3.ap-northeast-2.amazonaws.com/camp/([^\\s]+)";
+
+        Matcher matcher = Pattern.compile(pattern).matcher(content);
+
+        while (matcher.find()) {
+            fileNameList.add(matcher.group(1));
         }
+
+        return fileNameList;
+    }
+
+    public void deleteImage(String fileName) {
+        amazonS3.deleteObject(bucket, fileName);
     }
 
     public String getPreSignedUrl(String prefix, String fileName) {
@@ -68,4 +86,5 @@ public class S3Service {
         String fileId = UUID.randomUUID().toString().substring(0, 20);
         return String.format("%s/%s", prefix, fileId + fileName);
     }
+
 }

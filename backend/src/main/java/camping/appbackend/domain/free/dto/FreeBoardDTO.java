@@ -39,8 +39,6 @@ public class FreeBoardDTO {
                     .user(user)
                     .build();
         }
-
-
     }
 
 

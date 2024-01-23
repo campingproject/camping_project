@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import Theme from "@/styles/theme";
+import styled from 'styled-components';
+import Theme from '@/styles/theme';
 
-export const PlaceDescContainer = styled.section`
+export const PlaceDescContainer = styled.article`
   width: 80vw;
   margin: auto;
   ul {

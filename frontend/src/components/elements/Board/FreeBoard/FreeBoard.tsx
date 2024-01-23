@@ -1,3 +1,4 @@
+import Pagination from "@/components/common/Pagination";
 import {
   Container,
   Title,
@@ -6,8 +7,10 @@ import {
   Picture,
   BoardContent,
   StyledImage,
+  RegisterImage,
+  Footer,
 } from "./FreeBoard.style";
-import { boardImage1, boardImage2 } from "@/public/svgs";
+import { boardImage1, boardImage2, registerBtn } from "@/public/svgs";
 import { useState } from "react";
 
 export default function FreeBoard() {
@@ -76,6 +79,10 @@ export default function FreeBoard() {
           </Box>
         ))}
       </Content>
+      <Footer>
+        <Pagination />
+        <RegisterImage width={50} src={registerBtn} alt="등록버튼" />
+      </Footer>
     </Container>
   );
 }

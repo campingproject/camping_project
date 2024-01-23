@@ -81,3 +81,14 @@ export const BoardContent = styled.div`
     font-weight: bold;
   }
 `;
+
+export const Footer = styled.div`
+  margin: 10px auto;
+  position: relative;
+`;
+
+export const RegisterImage = styled(Image)`
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+`;

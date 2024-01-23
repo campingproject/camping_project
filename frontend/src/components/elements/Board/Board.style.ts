@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const BoardContainer = styled.div`
   width: 90%;
-  margin: 50px auto;
+  margin: 100px auto;
 `;
 
 export const Title = styled.div`

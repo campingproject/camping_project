@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.http.ResponseCookie;
 import org.springframework.util.SerializationUtils;
 
 public class CookieUtil {
@@ -37,21 +38,25 @@ public class CookieUtil {
     httpOnly 권한을 풀고 access 토큰을 저장하기 위함
      */
     public static void addCookieForAccess(HttpServletResponse response, String name, String value, int maxAge) {
-        Cookie cookie = new Cookie(name, value);
-        cookie.setPath("/");
-        cookie.setHttpOnly(false);
-        cookie.setMaxAge(maxAge);
-        cookie.setSecure(false);
-        response.addCookie(cookie);
+        ResponseCookie cookie = ResponseCookie.from(name, value)
+                .path("/")
+                .httpOnly(true)
+                .secure(true)
+                .sameSite("None")
+                .maxAge(maxAge)
+                .build();
+        response.setHeader("Set-Cookie", cookie.toString());
     }
 
     public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
-        Cookie cookie = new Cookie(name, value);
-        cookie.setPath("/");
-        cookie.setHttpOnly(true);
-        cookie.setMaxAge(maxAge);
-        cookie.setSecure(false);
-        response.addCookie(cookie);
+        ResponseCookie cookie = ResponseCookie.from(name, value)
+                .path("/")
+                .httpOnly(true)
+                .secure(true)
+                .sameSite("None")
+                .maxAge(maxAge)
+                .build();
+        response.setHeader("Set-Cookie", cookie.toString());
     }
 
     public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) {
@@ -63,11 +68,14 @@ public class CookieUtil {
 
         for (Cookie cookie : cookies) {
             if (name.equals(cookie.getName())) {
-                cookie.setValue("");
-                cookie.setPath("/");
-                cookie.setMaxAge(0);
-                cookie.setSecure(false);
-                response.addCookie(cookie);
+                ResponseCookie.from(cookie.getName(), cookie.getValue())
+                        .path("/")
+                        .httpOnly(true)
+                        .secure(true)
+                        .sameSite("None")
+                        .maxAge(cookie.getMaxAge())
+                        .build();
+                response.setHeader("Set-Cookie", cookie.toString());
             }
         }
     }

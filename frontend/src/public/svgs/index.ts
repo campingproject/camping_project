@@ -20,3 +20,4 @@ export { default as prevImageIcon } from "./icon_prevImage.svg";
 export { default as nextImageIcon } from "./icon_nextImage.svg";
 export { default as boardImage1 } from "./boardImg1.svg";
 export { default as boardImage2 } from "./boardImg2.svg";
+export { default as registerBtn } from "./registerBtn.svg";

@@ -1,25 +1,27 @@
-import Theme from "@/styles/theme";
-import styled from "styled-components";
+import Theme from '@/styles/theme';
+import styled from 'styled-components';
 
 export const SearchBarContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   background-color: ${Theme.colors.gray100};
   border-radius: 28px;
 `;
 
 export const InputBox = styled.div<{ $open: boolean }>`
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  & > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    cursor: pointer;
+  }
   padding: 8px 16px;
-  width: 100%;
   gap: 4px;
+  position: relative;
   border-radius: 28px;
-  cursor: pointer;
-  background-color: ${(props) =>
-    props.$open ? `${Theme.colors.orange200}` : "inherit"};
+  background-color: ${(props) => (props.$open ? `${Theme.colors.orange200}` : 'inherit')};
 `;
 
 export const StyledInput = styled.input`
@@ -50,7 +52,6 @@ export const DialogContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 240px;
 `;
 

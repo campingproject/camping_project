@@ -1,4 +1,4 @@
-import { PeopleDialog } from '@/components/PeopleDialog';
+import { PeopleDialog } from '@/components/Header/PeopleDialog';
 import { useState } from 'react';
 import * as Styled from './NumberOfVisitor.styles';
 

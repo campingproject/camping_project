@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { SearchBarDialog } from '../SearchBarDialog';
-import { DateRangePicker } from '../DateRangePicker';
-import { RegionTypes } from '@/types/region';
-import { SelectedDateRange } from '@/types/date';
+import { useEffect, useRef, useState } from "react";
+import { SearchBarDialog } from "../SearchBarDialog";
+import { DateRangePicker } from "../DateRangePicker";
+import { RegionTypes } from "@/types/region";
+import { SelectedDateRange } from "@/types/date";
 import {
   Box,
   Content,
@@ -14,13 +14,13 @@ import {
   SearchBarContainer,
   SearchIconBox,
   Title,
-} from './Searchbar.style';
-import { RegionDialog } from '../RegionDialog';
-import { PeopleDialog } from '../PeopleDialog';
-import { SearchIcon } from '@/public/svgs';
-import Image from 'next/image';
+} from "./Searchbar.style";
+import { RegionDialog } from "../RegionDialog";
+import { PeopleDialog } from "../PeopleDialog";
+import { SearchIcon } from "@/public/svgs";
+import Image from "next/image";
 
-type DialogTypes = '지역' | '체크인' | '체크아웃' | '인원';
+type DialogTypes = "지역" | "체크인" | "체크아웃" | "인원";
 
 export default function SearchBar() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -51,7 +51,7 @@ export default function SearchBar() {
     setStartDate(startDate);
     setEndDate(endDate);
 
-    setDialogType('체크아웃');
+    setDialogType("체크아웃");
   };
 
   const handleSubmit = () => {
@@ -79,18 +79,21 @@ export default function SearchBar() {
   };
 
   useEffect(() => {
-    document.addEventListener('mouseup', handleOutsideClick);
+    document.addEventListener("mouseup", handleOutsideClick);
 
-    return () => document.removeEventListener('mouseup', handleOutsideClick);
+    return () => document.removeEventListener("mouseup", handleOutsideClick);
   });
 
   return (
-    <div>
+    <div style={{ width: "60%" }}>
       <SearchBarContainer>
-        <InputBox $open={isDialogOpen && dialogType === '지역'} onClick={() => openDialog('지역')}>
+        <InputBox
+          $open={isDialogOpen && dialogType === "지역"}
+          onClick={() => openDialog("지역")}
+        >
           <Title>지역</Title>
-          <Content>{region ?? '지역 선택'}</Content>
-          {isDialogOpen && dialogType === '지역' && (
+          <Content>{region ?? "지역 선택"}</Content>
+          {isDialogOpen && dialogType === "지역" && (
             <SearchBarDialog ref={dialogRef}>
               <DialogContainer>
                 <DialogTitle>지역으로 검색하기</DialogTitle>
@@ -100,28 +103,36 @@ export default function SearchBar() {
           )}
         </InputBox>
         <InputBox
-          $open={isDialogOpen && dialogType === '체크인'}
-          onClick={() => openDialog('체크인')}
+          $open={isDialogOpen && dialogType === "체크인"}
+          onClick={() => openDialog("체크인")}
         >
           <Title>체크인</Title>
-          <Content>{startDate ?? '날짜 선택'}</Content>
+          <Content>{startDate ?? "날짜 선택"}</Content>
         </InputBox>
         <InputBox
-          $open={isDialogOpen && dialogType === '체크아웃'}
-          onClick={() => openDialog('체크아웃')}
+          $open={isDialogOpen && dialogType === "체크아웃"}
+          onClick={() => openDialog("체크아웃")}
         >
           <Title>체크아웃</Title>
-          <Content>{endDate ?? '날짜 선택'}</Content>
+          <Content>{endDate ?? "날짜 선택"}</Content>
         </InputBox>
-        <InputBox $open={isDialogOpen && dialogType === '인원'} onClick={() => openDialog('인원')}>
+        <InputBox
+          $open={isDialogOpen && dialogType === "인원"}
+          onClick={() => openDialog("인원")}
+        >
           <Title>인원</Title>
-          <Content>{totalNumber === 0 ? '인원 선택' : `총 ${totalNumber} 명`}</Content>
+          <Content>
+            {totalNumber === 0 ? "인원 선택" : `총 ${totalNumber} 명`}
+          </Content>
         </InputBox>
         <SearchIconBox onClick={handleSubmit}>
-          <Image src={SearchIcon} alt={'search'} width={32} height={32} />
+          <Image src={SearchIcon} alt={"search"} width={32} height={32} />
         </SearchIconBox>
-        {isDialogOpen && dialogType === '인원' && (
-          <SearchBarDialog ref={dialogRef} style={{ position: 'absolute', right: '-150px' }}>
+        {isDialogOpen && dialogType === "인원" && (
+          <SearchBarDialog
+            ref={dialogRef}
+            style={{ position: "absolute", right: "-150px" }}
+          >
             <DialogContainer>
               <DialogTitle>인원 선택</DialogTitle>
               <Box>
@@ -154,16 +165,19 @@ export default function SearchBar() {
           </SearchBarDialog>
         )}
       </SearchBarContainer>
-      {isDialogOpen && (dialogType === '체크인' || dialogType === '체크아웃') && (
-        <SearchBarDialog ref={dialogRef}>
-          <DateRangePicker
-            isPastDaysRestricted
-            checkIn={dialogType === '체크인'}
-            onDateSelect={dialogType === '체크인' ? handleCheckIn : handleCheckOut}
-            initialSelectedDateRange={{ startDate, endDate }}
-          />
-        </SearchBarDialog>
-      )}
+      {isDialogOpen &&
+        (dialogType === "체크인" || dialogType === "체크아웃") && (
+          <SearchBarDialog ref={dialogRef}>
+            <DateRangePicker
+              isPastDaysRestricted
+              checkIn={dialogType === "체크인"}
+              onDateSelect={
+                dialogType === "체크인" ? handleCheckIn : handleCheckOut
+              }
+              initialSelectedDateRange={{ startDate, endDate }}
+            />
+          </SearchBarDialog>
+        )}
     </div>
   );
 }

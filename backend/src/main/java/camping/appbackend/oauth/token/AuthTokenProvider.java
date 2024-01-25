@@ -1,10 +1,11 @@
 package camping.appbackend.oauth.token;
 
+
+import camping.appbackend.domain.user.entity.User;
+import camping.appbackend.domain.user.repository.UserRepository;
 import camping.appbackend.oauth.exception.TokenValidFailedException;
-import camping.appbackend.user.domain.entity.User;
-import camping.appbackend.user.domain.repository.UserRepository;
+
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.util.Arrays;
@@ -45,24 +46,18 @@ public class AuthTokenProvider {
 
     public Authentication getAuthentication(AuthToken authToken) {
 
-        if (authToken.validate()) {
-            Claims claims = authToken.getTokenClaims();
-            Collection<? extends GrantedAuthority> authorities =
-                    Arrays.stream(new String[]{claims.get(AUTHORITIES_KEY).toString()})
-                            .map(SimpleGrantedAuthority::new)
-                            .collect(Collectors.toList());
+        Claims claims = authToken.getTokenClaims().orElseThrow(TokenValidFailedException::new);
 
-            User principal = userRepository.findByEmail(claims.getSubject()).orElseThrow();
-            log.debug("claims subject := [{}]", claims.getSubject());
+        Collection<? extends GrantedAuthority> authorities =
+                Arrays.stream(new String[]{claims.get(AUTHORITIES_KEY).toString()})
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
 
-            return new UsernamePasswordAuthenticationToken(principal, authToken, authorities);
-        } else {
-            throw new TokenValidFailedException();
-        }
-    }
+        User principal = userRepository.findByEmail(claims.getSubject()).orElseThrow();
+        log.debug("claims subject := [{}]", claims.getSubject());
 
-    public String getUserEmailByToken(String token) {
-        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject();
+        return new UsernamePasswordAuthenticationToken(principal, authToken, authorities);
+
     }
 }
 

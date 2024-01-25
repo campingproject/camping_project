@@ -13,18 +13,19 @@ function Login() {
   const handleKakao = async () => {
     try {
       // window.location.href = `${process.env.NEXT_PUBLIC_KAKAO_AUTH_LOGIN_URI}`;
+      window.location.href = 'https://api.campinggo.store/oauth2/authorization/kakao';
       // window.location.href = 'http://43.200.131.69:9090/oauth2/authorization/kakao';
-      // window.location.href = `http://43.200.131.69:9090/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login/redirect`;
+      // window.location.href = `https://api.campinggo.store/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login/redirect`;
 
-      const response = await fetch(
-        // `http://43.200.131.69:9090/oauth2/authorization/kakao`,
-        `/oauth2/authorization/kakao`,
-        {
-          method: 'GET',
-          credentials: 'include', // credentials 옵션을 추가하여 쿠키 전송
-        },
-      );
-      console.log(response.headers);
+      // const response = await fetch(
+      //   // `http://43.200.131.69:9090/oauth2/authorization/kakao`,
+      //   `/oauth2/authorization/kakao`,
+      //   {
+      //     method: 'GET',
+      //     credentials: 'include', // credentials 옵션을 추가하여 쿠키 전송
+      //   },
+      // );
+      // console.log(response.headers);
     } catch (error) {
       console.log(error);
     }

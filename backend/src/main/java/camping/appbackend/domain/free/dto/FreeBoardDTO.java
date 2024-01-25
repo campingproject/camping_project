@@ -7,8 +7,8 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.data.domain.Page;
 
 public class FreeBoardDTO {
 
@@ -28,10 +28,13 @@ public class FreeBoardDTO {
         @NotBlank(message = "이메일을 입력해주세요")
         private String email;
 
+        private String thumbnailUrl;
+
         public FreeBoard toEntity(User user) {
             return FreeBoard.builder()
                     .title(title)
                     .content(content)
+                    .thumbnailUrl(thumbnailUrl)
                     .writer(user.getNickName())
                     .user(user)
                     .build();
@@ -40,33 +43,23 @@ public class FreeBoardDTO {
 
 
     @Getter
+    @NoArgsConstructor
+    @ToString
     public static class Response {
 
-        private final Long id;
-        private final String title;
-        private final String content;
-        private final String writer;
+        private Long id;
+        private String title;
+        private String content;
+        private String writer;
+        private String thumbnailUrl;
 
         public Response(final FreeBoard board) {
             id = board.getId();
             title = board.getTitle();
             content = board.getContent();
             writer = board.getWriter();
+            thumbnailUrl = board.getThumbnailUrl();
         }
     }
 
-
-    @Getter
-    public static class PageResponse {
-
-        private final Page<Response> boardList;
-        private final int startPage;
-        private final int endPage;
-
-        public PageResponse(final Page<Response> boardList, final int startPage, final int endPage) {
-            this.boardList = boardList;
-            this.startPage = startPage;
-            this.endPage = endPage;
-        }
-    }
 }

@@ -1,7 +1,21 @@
-import styled from "styled-components";
-import Theme from "@/styles/theme";
+import styled, { keyframes } from 'styled-components';
+import Theme from '@/styles/theme';
 
-export const CarouselModalSection = styled.section`
+export const CarouselModalBox = styled.section`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto; /* 세로 스크롤바 활성화 */
+  max-height: 100%; /* 내용이 모두 표시되도록 최대 높이 설정 */
+`;
+
+export const CarouselModalContent = styled.section`
   display: block;
   width: 65vw;
   margin: auto;

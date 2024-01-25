@@ -1,4 +1,4 @@
-package camping.appbackend.domain.free.service;
+package camping.appbackend.domain.campReview.repository;
 
 import static camping.appbackend.common.exception.ResultCode.BOARD_NOT_FOUND;
 import static camping.appbackend.common.exception.ResultCode.BOARD_NOT_PERMISSION;
@@ -7,11 +7,9 @@ import static camping.appbackend.common.exception.ResultCode.USER_NOT_EXISTS;
 import camping.appbackend.common.exception.BaseException;
 import camping.appbackend.common.paging.PageRequestDTO;
 import camping.appbackend.domain.aws.service.S3Service;
-import camping.appbackend.domain.free.dto.FreeBoardDTO;
-import camping.appbackend.domain.free.dto.FreeBoardDTO.Response;
-import camping.appbackend.domain.free.entity.FreeBoard;
-import camping.appbackend.domain.free.repository.FreeBoardQueryRepository;
-import camping.appbackend.domain.free.repository.FreeBoardRepository;
+import camping.appbackend.domain.campReview.dto.CampReviewDTO;
+import camping.appbackend.domain.campReview.dto.CampReviewDTO.Response;
+import camping.appbackend.domain.campReview.entity.CampReview;
 import camping.appbackend.domain.user.entity.User;
 import camping.appbackend.domain.user.repository.UserRepository;
 import java.util.Objects;
@@ -26,36 +24,36 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 @Service
-public class FreeBoardService {
+public class CampReviewService {
 
-    private final FreeBoardRepository freeBoardRepository;
-    private final FreeBoardQueryRepository freeBoardQueryRepository;
+    private final CampReviewRepository campReviewRepository;
+    private final CampReviewQueryRepository campReviewQueryRepository;
     private final UserRepository userRepository;
     private final S3Service s3Service;
 
     @Transactional(readOnly = true)
-    public Page<Response> getBoards(PageRequestDTO pageRequestDTO) {
+    public Page<Response> getReviews(PageRequestDTO pageRequestDTO) {
         Pageable pageable = pageRequestDTO.toPageable();
-        return freeBoardQueryRepository.findByPage(pageable);
+        return campReviewQueryRepository.findByPage(pageable);
     }
 
     @Transactional(readOnly = true)
-    public FreeBoardDTO.Response getBoard(Long id) {
-        return freeBoardRepository.findById(id)
+    public CampReviewDTO.Response getReview(Long id) {
+        return campReviewRepository.findById(id)
                 .map(Response::new)
                 .orElseThrow(() -> new BaseException(BOARD_NOT_FOUND));
     }
 
-    public Long saveBoard(FreeBoardDTO.Request request) {
+    public Long saveReview(CampReviewDTO.Request request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new BaseException(USER_NOT_EXISTS));
 
-        FreeBoard board = freeBoardRepository.save(request.toEntity(user));
+        CampReview board = campReviewRepository.save(request.toEntity(user));
         return board.getId();
     }
 
-    public void updateBoard(Long id, FreeBoardDTO.Request request) {
-        FreeBoard board = freeBoardRepository.findById(id)
+    public void updateReview(Long id, CampReviewDTO.Request request) {
+        CampReview board = campReviewRepository.findById(id)
                 .orElseThrow(() -> new BaseException(BOARD_NOT_FOUND));
 
         User user = userRepository.findByEmail(request.getEmail())
@@ -65,13 +63,12 @@ public class FreeBoardService {
             throw new BaseException(BOARD_NOT_PERMISSION);
         }
 
-        board.update(request.getTitle(), request.getContent(), request.getThumbnailUrl());
+        board.update(request.getMessage(), request.getImageUrl(), request.getCampSiteName());
 
     }
 
-    public void deleteBoard(Long id, String email) {
-
-        FreeBoard board = freeBoardRepository.findById(id)
+    public void deleteReview(Long id, String email) {
+        CampReview board = campReviewRepository.findById(id)
                 .orElseThrow(() -> new BaseException(BOARD_NOT_FOUND));
 
         User user = userRepository.findByEmail(email)
@@ -81,9 +78,10 @@ public class FreeBoardService {
             throw new BaseException(BOARD_NOT_PERMISSION);
         }
 
-        freeBoardRepository.delete(board);
-        s3Service.deleteImagesWithPattern(board.getContent());
+        campReviewRepository.delete(board);
+        s3Service.deleteImagesWithPattern(board.getImageUrl());
 
     }
+
 
 }

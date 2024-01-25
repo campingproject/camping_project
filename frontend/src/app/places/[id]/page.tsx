@@ -1,6 +1,7 @@
 'use client';
 import { Header } from '@/components/Header';
-import PlaceDetails from '@/components/elements/PlaceDetails';
+import PlaceDetails from '@/components/elements/Places/PlaceDetails';
+import { OrderSettingBox } from '@/components/elements/Places/OrderSettingBox';
 import { useParams } from 'next/navigation';
 import useSWR from 'swr';
 
@@ -20,6 +21,7 @@ function PlaceDetailPage() {
     <>
       <Header />
       <PlaceDetails data={data} />
+      <OrderSettingBox />
     </>
   );
 }

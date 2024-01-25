@@ -1,4 +1,4 @@
-package camping.appbackend.domain.free.entity;
+package camping.appbackend.domain.campReview.entity;
 
 import camping.appbackend.common.base.BaseTimeEntity;
 import camping.appbackend.domain.user.entity.User;
@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -22,46 +21,47 @@ import org.hibernate.annotations.DynamicUpdate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate
 @Entity
-public class FreeBoard extends BaseTimeEntity {
+public class CampReview extends BaseTimeEntity {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "free_board_id")
+    @Column(name = "camp_review_id")
     private Long id;
 
-    @Comment("제목")
+    @Comment("한줄평")
     @Column(length = 100, nullable = false)
-    private String title;
+    private String message;
 
-    @Comment("내용")
-    @Lob
+    @Comment("캠핑 사진 URL")
     @Column(nullable = false)
-    private String content;
-
-    @Comment("썸네일")
-    private String thumbnailUrl;
+    private String imageUrl;
 
     @Comment("작성자")
     @Column(length = 100, nullable = false)
     private String writer;
 
+    @Comment("캠핑장명")
+    @Column(length = 50, nullable = false)
+    private String campSiteName;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    public void update(String title, String content, String thumbnail) {
-        this.title = title;
-        this.content = content;
-        this.thumbnailUrl = thumbnail;
+    public void update(String content, String imageUrl, String campSiteName) {
+        this.message = content;
+        this.imageUrl = imageUrl;
+        this.campSiteName = campSiteName;
     }
 
 
     @Builder
-    public FreeBoard(String title, String content, String thumbnailUrl, String writer, User user) {
-        this.title = title;
-        this.content = content;
+    public CampReview(String message, String imageUrl, String writer, String campSiteName, User user) {
+        this.message = message;
         this.writer = writer;
-        this.thumbnailUrl = thumbnailUrl;
+        this.imageUrl = imageUrl;
+        this.campSiteName = campSiteName;
         this.user = user;
     }
 }

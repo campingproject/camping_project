@@ -16,6 +16,7 @@ import camping.appbackend.domain.user.entity.type.SocialType;
 import camping.appbackend.domain.user.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -64,9 +65,7 @@ class FreeBoardServiceTest {
         @Test
         void getBoardsWithPaging_success() {
             // Given
-            for (int i = 0; i < 25; i++) {
-                insertSampleBoard();
-            }
+            IntStream.range(0, 25).forEach(i -> insertSampleBoard());
 
             // When
             List<FreeBoardDTO.Response> result = freeBoardService.getBoards(new PageRequestDTO(1, 10)).getContent();
@@ -87,20 +86,6 @@ class FreeBoardServiceTest {
             // Then
             assertThat(response.getContent()).isEqualTo("test");
         }
-
-        @DisplayName("게시물 상세보기 - 성공")
-        @Test
-        void getBoardDetail_withInvalidBoard_shouldThrowException() {
-            // Given
-            insertSampleBoard();
-
-            // When
-            BaseException baseException = assertThrows(BaseException.class, () -> freeBoardService.getBoard(999L));
-
-            // Then
-            assertThat(baseException.getResultCode()).isEqualTo(ResultCode.BOARD_NOT_FOUND);
-        }
-
 
         @DisplayName("게시물 생성 - 성공")
         @Test
@@ -179,6 +164,20 @@ class FreeBoardServiceTest {
             assertThat(baseException.getResultCode()).isEqualTo(ResultCode.USER_NOT_EXISTS);
 
         }
+
+        @DisplayName("게시물 상세보기 - 실패 (게시글 없음)")
+        @Test
+        void getBoardDetail_withInvalidBoard_shouldThrowException() {
+            // Given
+            insertSampleBoard();
+
+            // When
+            BaseException baseException = assertThrows(BaseException.class, () -> freeBoardService.getBoard(999L));
+
+            // Then
+            assertThat(baseException.getResultCode()).isEqualTo(ResultCode.BOARD_NOT_FOUND);
+        }
+
 
         @DisplayName("게시물 수정 - 실패 (존재하지 않는 유저)")
         @Test

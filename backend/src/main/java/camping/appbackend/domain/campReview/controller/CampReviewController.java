@@ -3,7 +3,7 @@ package camping.appbackend.domain.campReview.controller;
 import camping.appbackend.common.paging.PageRequestDTO;
 import camping.appbackend.common.response.DataResponseDTO;
 import camping.appbackend.domain.campReview.dto.CampReviewDTO;
-import camping.appbackend.domain.campReview.repository.CampReviewService;
+import camping.appbackend.domain.campReview.service.CampReviewService;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import javax.validation.Valid;

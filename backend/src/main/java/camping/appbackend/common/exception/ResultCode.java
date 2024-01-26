@@ -26,7 +26,9 @@ public enum ResultCode {
 
     USER_NOT_EXISTS(12000, HttpStatus.NOT_FOUND, "User Not Exists"),
 
-    IMAGE_NOT_EXISTS(13000, HttpStatus.NOT_FOUND, "image Not Exists");
+    IMAGE_NOT_EXISTS(13000, HttpStatus.NOT_FOUND, "image Not Exists"),
+
+    API_REQUEST_ERROR(14000, HttpStatus.BAD_REQUEST, "Go Camp Api Request Error");
 
 
     private final Integer code;

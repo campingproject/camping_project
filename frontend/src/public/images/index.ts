@@ -1,0 +1,16 @@
+export { default as advertisementBanner } from './ad_banner1.png';
+export { default as placeWish1 } from './place_wish1.png';
+export { default as placeWish2 } from './place_wish2.png';
+export { default as placeWish3 } from './place_wish3.png';
+export { default as placeWish4 } from './place_wish4.png';
+export { default as placeWish5 } from './place_wish5.png';
+export { default as placeWish6 } from './place_wish6.png';
+export { default as shoppingWish1 } from './shopping_wish1.png';
+export { default as shoppingWish2 } from './shopping_wish2.png';
+export { default as shoppingWish3 } from './shopping_wish3.png';
+export { default as shoppingWish4 } from './shopping_wish4.png';
+export { default as shoppingWish5 } from './shopping_wish5.png';
+export { default as shoppingWish6 } from './shopping_wish6.png';
+export { default as shopItem1 } from './shopItem1.png';
+export { default as shopItem2 } from './shopItem2.png';
+export { default as shopItem3 } from './shopItem3.png';

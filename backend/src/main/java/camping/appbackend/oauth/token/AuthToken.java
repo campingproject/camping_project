@@ -26,12 +26,12 @@ public class AuthToken {
     private static final String AUTHORITIES_KEY = "role";
     private static final String NICKNAME_KEY = "nickName";
 
-    AuthToken(String id, Date expiry, Key key) {
+    public AuthToken(String id, Date expiry, Key key) {
         this.key = key;
         this.token = createAuthToken(id, expiry);
     }
 
-    AuthToken(String id, String nickName, String role, Date expiry, Key key) {
+    public AuthToken(String id, String nickName, String role, Date expiry, Key key) {
         this.key = key;
         this.token = createAuthToken(id, nickName, role, expiry);
     }

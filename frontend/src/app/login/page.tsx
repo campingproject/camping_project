@@ -5,49 +5,21 @@ import { StyledMain } from './Login.styles';
 import Link from 'next/link';
 import { kakaoIcon, naverIcon } from '@/public/svgs';
 import { LoginButton } from '@/components/Login';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
 function Login() {
-  const router = useRouter();
   const handleKakao = async () => {
-    try {
-      // window.location.href = `${process.env.NEXT_PUBLIC_KAKAO_AUTH_LOGIN_URI}`;
-      window.location.href = 'https://api.campinggo.store/oauth2/authorization/kakao';
-      // window.location.href = 'http://43.200.131.69:9090/oauth2/authorization/kakao';
-      // window.location.href = `https://api.campinggo.store/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login/redirect`;
-
-      // const response = await fetch(
-      //   // `http://43.200.131.69:9090/oauth2/authorization/kakao`,
-      //   `/oauth2/authorization/kakao`,
-      //   {
-      //     method: 'GET',
-      //     credentials: 'include', // credentials 옵션을 추가하여 쿠키 전송
-      //   },
-      // );
-      // console.log(response.headers);
-    } catch (error) {
-      console.log(error);
-    }
+    window.location.href = `${process.env.NEXT_PUBLIC_KAKAO_AUTH_LOGIN_URI}`;
+    // window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=aba6bffe80f7500363f86226beda4b2b&redirect_uri=https://localhost:3001/login/redirect`;
   };
+
   const handleNaver = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_NAVER_AUTH_LOGIN_URI}`;
   };
-
-  // 페이지 로딩 후 실행될 코드
-  useEffect(() => {
-    // 이 부분에서 로그인이 성공하면 리다이렉트 코드를 실행합니다.
-    // if (window.location.pathname === '/login/redirect') {
-    //   router.push('/');
-    // }
-  }, []);
 
   return (
     <StyledMain>
       <Logo />
       <h1>로그인</h1>
-      <p>기존 계정으로 간편하게 로그인 하세요!</p>
-
       <section>
         <LoginButton
           onClick={handleKakao}

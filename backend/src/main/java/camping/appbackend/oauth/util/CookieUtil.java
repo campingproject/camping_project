@@ -43,7 +43,6 @@ public class CookieUtil {
                 .secure(true)
                 .sameSite("None")
                 .maxAge(maxAge)
-                .domain("localhost")
                 .build();
         response.addHeader("Set-Cookie", cookie.toString());
     }
@@ -54,7 +53,6 @@ public class CookieUtil {
                 .secure(true)
                 .sameSite("None")
                 .maxAge(maxAge)
-                .domain("localhost")
                 .build();
         response.addHeader("Set-Cookie", cookie.toString());
     }

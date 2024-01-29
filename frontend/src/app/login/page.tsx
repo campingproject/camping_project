@@ -9,7 +9,6 @@ import { LoginButton } from '@/components/Login';
 function Login() {
   const handleKakao = async () => {
     window.location.href = `${process.env.NEXT_PUBLIC_KAKAO_AUTH_LOGIN_URI}`;
-    // window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=aba6bffe80f7500363f86226beda4b2b&redirect_uri=https://localhost:3001/login/redirect`;
   };
 
   const handleNaver = () => {

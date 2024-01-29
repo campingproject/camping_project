@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const HOST_SERVER = 'http://localhost:3000';
+const HOST_SERVER = process.env.NEXT_PUBLIC_CLIENT_URL;
 
 export async function GET() {
   const res = await fetch(`${HOST_SERVER}/mypage/wish/place`);

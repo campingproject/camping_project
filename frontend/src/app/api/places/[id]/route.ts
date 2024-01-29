@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const HOST_SERVER = 'http://localhost:3000';
+const HOST_SERVER = process.env.NEXT_PUBLIC_CLIENT_URL;
 
 type Context = {
   params: { id: string };

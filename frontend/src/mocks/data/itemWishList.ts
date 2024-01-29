@@ -16,6 +16,7 @@ export const itemWishListData = [
     description: '아이템에 대한 설명입니다.',
     images: [shopItem1, shopItem2, shopItem3],
     thumbnail: shoppingWish1,
+    seller: '홍길동',
   },
   {
     id: '2',
@@ -24,6 +25,7 @@ export const itemWishListData = [
     description: '아이템에 대한 설명입니다.',
     images: [shopItem1, shopItem2, shopItem3],
     thumbnail: shoppingWish2,
+    seller: '홍길동',
   },
   {
     id: '3',
@@ -32,6 +34,7 @@ export const itemWishListData = [
     description: '아이템에 대한 설명입니다.',
     images: [shopItem1, shopItem2, shopItem3],
     thumbnail: shoppingWish3,
+    seller: '홍길동',
   },
   {
     id: '4',
@@ -40,6 +43,7 @@ export const itemWishListData = [
     description: '아이템에 대한 설명입니다.',
     images: [shopItem1, shopItem2, shopItem3],
     thumbnail: shoppingWish4,
+    seller: '홍길동',
   },
   {
     id: '5',
@@ -48,6 +52,7 @@ export const itemWishListData = [
     description: '아이템에 대한 설명입니다.',
     images: [shopItem1, shopItem2, shopItem3],
     thumbnail: shoppingWish5,
+    seller: '홍길동',
   },
   {
     id: '6',
@@ -56,5 +61,6 @@ export const itemWishListData = [
     description: '아이템에 대한 설명입니다.',
     images: [shopItem1, shopItem2, shopItem3],
     thumbnail: shoppingWish6,
+    seller: '홍길동',
   },
 ];

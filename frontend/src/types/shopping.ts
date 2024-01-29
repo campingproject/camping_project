@@ -1,8 +1,9 @@
-export type PlaceDataTypes = {
+export type ShoppingItemTypes = {
   id: string;
   name: string;
-  address: string;
+  price: string;
   description: string;
   images?: string[];
   thumbnail: string;
+  seller: string;
 };

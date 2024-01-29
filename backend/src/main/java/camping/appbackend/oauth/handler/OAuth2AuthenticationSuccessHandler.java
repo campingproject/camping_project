@@ -10,7 +10,6 @@ import camping.appbackend.domain.user.entity.UserRefreshToken;
 import camping.appbackend.domain.user.entity.type.SocialType;
 import camping.appbackend.domain.user.entity.type.UserRoleType;
 import camping.appbackend.domain.user.repository.UserRefreshTokenRepository;
-
 import camping.appbackend.oauth.domain.repository.OAuth2AuthorizationRequestBasedOnCookieRepository;
 import camping.appbackend.oauth.info.OAuth2UserInfo;
 import camping.appbackend.oauth.info.OAuth2UserInfoFactory;
@@ -108,7 +107,6 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         int cookieMaxAge = (int) refreshTokenExpiry / 60;
         int cookieMaxAgeForAccess = (int) appProperties.getAuth().getTokenExpiry() / 1000;
 
-
         CookieUtil.deleteCookie(request, response, ACCESS_TOKEN);
         CookieUtil.addCookieForAccess(response, ACCESS_TOKEN, accessToken.getToken(), cookieMaxAgeForAccess);
 
@@ -146,7 +144,6 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         return appProperties.getOauth2().getAuthorizedRedirectUris()
                 .stream()
                 .anyMatch(authorizedRedirectUri -> {
-                    // Only validate host and port. Let the clients use different paths if they want to
                     URI authorizedURI = URI.create(authorizedRedirectUri);
                     return authorizedURI.getHost().equalsIgnoreCase(clientRedirectUri.getHost())
                             && authorizedURI.getPort() == clientRedirectUri.getPort();

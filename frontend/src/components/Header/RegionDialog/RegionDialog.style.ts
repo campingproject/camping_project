@@ -26,4 +26,5 @@ export const RegionButton = styled.button`
   font-size: ${Theme.fontSize.xsmall};
   border: 0;
   outline: 0;
+  cursor: pointer;
 `;

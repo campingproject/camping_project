@@ -1,4 +1,4 @@
-package camping.appbackend.domain.campReview.repository;
+package camping.appbackend.domain.campReview.service;
 
 import static camping.appbackend.common.exception.ResultCode.BOARD_NOT_FOUND;
 import static camping.appbackend.common.exception.ResultCode.BOARD_NOT_PERMISSION;
@@ -10,6 +10,8 @@ import camping.appbackend.domain.aws.service.S3Service;
 import camping.appbackend.domain.campReview.dto.CampReviewDTO;
 import camping.appbackend.domain.campReview.dto.CampReviewDTO.Response;
 import camping.appbackend.domain.campReview.entity.CampReview;
+import camping.appbackend.domain.campReview.repository.CampReviewQueryRepository;
+import camping.appbackend.domain.campReview.repository.CampReviewRepository;
 import camping.appbackend.domain.user.entity.User;
 import camping.appbackend.domain.user.repository.UserRepository;
 import java.util.Objects;

@@ -3,7 +3,7 @@ import * as Styled from './OrderSettingBox.styles';
 import NumberOfVisitor from './fragments/NumberOfVisitor/NumberOfVisitor';
 import { useParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { DateRangePicker } from '@/components/DateRangePicker';
+import { DateRangePicker } from '@/components/Header/DateRangePicker';
 import { SelectedDateRange } from '@/types/date';
 import DateDialog from './fragments/DateDialog/DateDialog';
 

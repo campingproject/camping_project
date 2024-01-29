@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const Embla = styled.div`
   --slide-spacing: 1rem;
@@ -18,7 +18,7 @@ export const EmblaContainer = styled.div`
   touch-action: pan-y;
   width: 100%;
   height: 100%;
-  margin-left: calc(var(--slide-spacing) * -1);
+  // margin-left: calc(var(--slide-spacing) * -1);
 `;
 
 export const Slide = styled.div`

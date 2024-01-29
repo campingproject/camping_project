@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { SelectedDateRange, YearMonth } from '../../types/date';
-import { getDayBoxSize, getDayInfo } from '../../utils/date';
+import { SelectedDateRange, YearMonth } from '../../../types/date';
+import { getDayBoxSize, getDayInfo } from '../../../utils/date';
 import {
   CalendarContainer,
   CalendarHeader,
@@ -9,7 +9,7 @@ import {
   WeekOfDaysBox,
 } from './Calendar.style';
 import Day from './Day/Day';
-import { DAYS_OF_WEEK } from '../../constants/date';
+import { DAYS_OF_WEEK } from '../../../constants/date';
 
 export interface CalendarProps {
   /** 현재 Date */

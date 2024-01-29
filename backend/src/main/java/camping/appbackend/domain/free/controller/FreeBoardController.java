@@ -28,7 +28,7 @@ public class FreeBoardController {
 
     @Operation(summary = "자유게시판 게시글 조회")
     @GetMapping("/list")
-    public DataResponseDTO<Page<Response>> board(PageRequestDTO pageRequestDTO) {
+    public DataResponseDTO<Page<Response>> board(@Valid PageRequestDTO pageRequestDTO) {
         return DataResponseDTO.of(freeBoardService.getBoards(pageRequestDTO));
     }
 

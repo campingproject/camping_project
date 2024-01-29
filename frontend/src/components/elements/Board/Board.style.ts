@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const BoardContainer = styled.div`
   width: 90%;
-  margin: 50px auto;
+  margin: 100px auto;
 `;
 
 export const Title = styled.div`
@@ -10,4 +10,5 @@ export const Title = styled.div`
   font-family: sans-serif;
   font-weight: 500;
   margin-top: 100px;
+  color: #5f5f5f;
 `;

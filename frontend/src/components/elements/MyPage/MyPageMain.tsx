@@ -11,7 +11,7 @@ function MyPageMain() {
   const router = useRouter();
 
   return (
-    <Styled.Main>
+    <main>
       <Styled.TitleWrap>
         <h1>마이페이지</h1>
         <Link href="/mypage/member-information">회원 정보 관리</Link>
@@ -43,7 +43,7 @@ function MyPageMain() {
         />
       </Styled.Section>
       <Advertisement />
-    </Styled.Main>
+    </main>
   );
 }
 export default MyPageMain;

@@ -8,8 +8,29 @@ export const Container = styled.div`
   border-radius: 10px;
   padding: 15px;
   margin: auto;
+  img {
+    width: 50px;
+    height: 50px;
+  }
   &:hover {
     cursor: pointer;
+  }
+  @media screen and (max-width: ${Theme.screen.tablet}) {
+    width: 100%;
+    height: 140px;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @media screen and (max-width: ${Theme.screen.mobile}) {
+    width: 100%;
+    height: 130px;
+    img {
+      width: 30px;
+      height: 30px;
+    }
   }
 `;
 
@@ -18,6 +39,14 @@ export const TextWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @media screen and (max-width: ${Theme.screen.tablet}) {
+    margin-top: 18px;
+  }
+
+  @media screen and (max-width: ${Theme.screen.mobile}) {
+    margin-top: 20px;
+  }
 `;
 
 export const Title = styled.p`

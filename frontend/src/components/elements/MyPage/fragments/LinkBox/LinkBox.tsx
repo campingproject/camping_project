@@ -10,7 +10,7 @@ type Props = {
 function LinkBox({ onClick, imgSrc, title, desc }: Props) {
   return (
     <Styled.Container onClick={onClick}>
-      <Image src={imgSrc} alt="icon" width={50} height={50} />
+      <Image src={imgSrc} alt="icon" width={0} height={0} />
       <Styled.TextWrap>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Desc>{desc}</Styled.Desc>

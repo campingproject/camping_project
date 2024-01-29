@@ -1,28 +1,45 @@
+'use client';
 import PageTitle from '@/components/common/Title/PageTitle';
 import { prevArrowIcon } from '@/public/svgs';
-import ImagesContainer from './ImagesContainer';
 import useSWR from 'swr';
-// import { WISH } from '@/constants/api';
+import * as Styled from './WishListMain.styles';
+import WishPlaceImages from './ImagesContainer/WishPlaceImages';
+import WishItemImages from './ImagesContainer/WishItemImages';
+import { WISH_ITEM_END_POINT, WISH_PLACE_END_POINT } from '@/constants/api';
 
 function WishListMain() {
-  const { data, isLoading, error } = useSWR('/api/mypage/wish/place');
-  // const { data, isLoading, error } = useSWR(`${WISH.WISH_PLACE}`);
-  // console.log(WISH.WISH_PLACE);
-  console.log(data);
-  if (error) {
-    console.log('Fetch Error: ' + error);
-    return <div>Error fetching data</div>;
+  const {
+    data: placeDate,
+    isLoading: isPlaceLoading,
+    error: placeError,
+  } = useSWR(WISH_PLACE_END_POINT.WISH_PLACE());
+
+  const {
+    data: ItemData,
+    isLoading: isItemLoading,
+    error: itemError,
+  } = useSWR(WISH_ITEM_END_POINT.WISH_ITEM());
+
+  if (placeError) {
+    console.log('Place Data Fetch Error: ' + placeError);
+    return <div>Error fetching wish places.</div>;
   }
-  if (isLoading) return <div>Loading...</div>;
+
+  if (itemError) {
+    console.log('Item Data Fetch Error: ' + itemError);
+    return <div>Error fetching wish items.</div>;
+  }
+  if (isPlaceLoading || isItemLoading) return <div>Loading...</div>;
 
   return (
-    <main>
+    <Styled.Main>
       <PageTitle title="찜한 내역" href="/mypage" iconSrc={prevArrowIcon} />
       <p>최근 6개월 간의 찜한 내역이 표시됩니다.</p>
-      <ImagesContainer />
+      <WishPlaceImages data={placeDate} />
       <h2>찜한 아이템</h2>
       <p>최근 6개월 간의 찜한 아이템이 표시됩니다.</p>
-    </main>
+      <WishItemImages data={ItemData} />
+    </Styled.Main>
   );
 }
 export default WishListMain;

@@ -115,7 +115,8 @@ public class SecurityConfig {
         corsConfig.setAllowedHeaders(List.of("*"));
         corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         corsConfig.setAllowedOrigins(
-                List.of("http://localhost:3000", "https://localhost:3001", "https://www.campinggo.store:3000"));
+                List.of("http://localhost:3000", "https://localhost:3001", "https://www.campinggo.store:3000",
+                        "https://www.api.campinggo.store:3000"));
         corsConfig.setExposedHeaders(List.of("*"));
         corsConfig.setAllowCredentials(true);
         corsConfig.setMaxAge(3600L);

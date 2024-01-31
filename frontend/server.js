@@ -5,28 +5,27 @@ const next = require('next');
 const https = require('https');
 const fs = require('fs');
 
+const PORT = 3000;
+const HOST_NAME = 'api.campinggo.store';
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+const app = next({ dev, hostname: HOST_NAME, port: PORT });
 const handle = app.getRequestHandler();
 
-const httpPort = 3000;
-const httpsPort = 3001;
-
 const httpsOptions = {
-  key: fs.readFileSync('./key.pem'),
-  cert: fs.readFileSync('./cert.pem'),
+  key: fs.readFileSync('./api.campinggo.store+2-key.pem'),
+  cert: fs.readFileSync('./api.campinggo.store+2.pem'),
 };
 
 app.prepare().then(() => {
-  http
-    .createServer((req, res) => {
-      const parsedUrl = parse(req.url, true);
-      handle(req, res, parsedUrl);
-    })
-    .listen(httpPort, (err) => {
-      if (err) throw err;
-      console.log(`> Ready on http://localhost:${httpPort}`);
-    });
+  // http
+  //   .createServer((req, res) => {
+  //     const parsedUrl = parse(req.url, true);
+  //     handle(req, res, parsedUrl);
+  //   })
+  //   .listen(PORT, (err) => {
+  //     if (err) throw err;
+  //     console.log(`> Ready on http://localhost:${PORT}`);
+  //   });
 
   // https 서버 추가
   https
@@ -34,8 +33,8 @@ app.prepare().then(() => {
       const parsedUrl = parse(req.url, true);
       handle(req, res, parsedUrl);
     })
-    .listen(httpsPort, (err) => {
+    .listen(PORT, (err) => {
       if (err) throw err;
-      console.log(`> HTTPS: Ready on https://localhost:${httpsPort}`);
+      console.log(`> HTTPS: Ready on https://${HOST_NAME}:${PORT}`);
     });
 });

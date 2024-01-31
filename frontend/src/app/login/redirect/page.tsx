@@ -15,14 +15,37 @@ const fetcher = async (url: string) => {
 };
 
 function LoginRedirect() {
-  const { data, isLoading, error } = useSWR('/api/oauth', fetcher);
-  const router = useRouter();
+  // const router = useRouter();
+  // const { data, isLoading, error } = useSWR('/api/oauth', fetcher);
   // console.log(data);
+
+  // useEffect(() => {
+  //   // if (data) return router.replace('/');
+  // }, [data]);
+  // if (isLoading) return <div>isLoading...</div>;
+  // if (error) return <div>error...</div>;
+
+  const fetchData = async () => {
+    try {
+      const res = await fetch('https://api.campinggo.store', {
+        // const res = await fetch('/api/oauth', {
+        method: 'GET',
+        credentials: 'include',
+      });
+      // const data = await res.json();
+      const data = await res.text();
+      // setData(data);
+      console.log(res);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    // if (data) return router.replace('/');
-  }, [data]);
-  if (isLoading) return <div>isLoading...</div>;
-  if (error) return <div>error...</div>;
+    fetchData();
+    console.log('쿠키: ' + document.cookie);
+  }, []);
+
   return <div>LoginRedirect</div>;
 }
 export default LoginRedirect;

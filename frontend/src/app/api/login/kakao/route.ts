@@ -1,25 +1,18 @@
-import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-import { NextApiRequest, NextApiResponse } from 'next';
 
-const HOST_SERVER = 'https://api.campinggo.store';
-
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest, _: NextResponse) {
   try {
     // 1. 인가 코드를 이용해 토큰 받기
-    // const { code } = req.body;
+    const code = new URL(req.url).searchParams.get('code'); // code 추출
+
     const config = {
       grant_type: 'authorization_code',
-      // code: req.body.code as string,
-      // code,
-      // client_id: process.env.KAKAO_CLIENT_ID!,
-      client_id: 'aba6bffe80f7500363f86226beda4b2b',
-      // redirect_uri: process.env.KAKAO_REDIRECT_URI!,
-      redirect_uri: 'https://localhost:3001/login/redirect',
-      // client_secret: process.env.KAKAO_CLIENT_SECRET!,
-      client_secret: '0f01eOFo462AQkVfGL5Ur8AGKAFxdYpL',
+      code: String(code),
+      client_id: process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY!,
+      redirect_uri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI!,
+      client_secret: process.env.NEXT_PUBLIC_KAKAO_CLIENT_SECRET!,
     };
-    const params = new URLSearchParams(config).toString();
+    const params = new URLSearchParams(config);
     const baseUrl = `https://kauth.kakao.com/oauth/token?${params}`;
 
     // fetch를 사용하여 토큰과 토큰 정보 요청하기
@@ -44,10 +37,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     const userData = await userDataResponse.json();
 
-    // 여기에서 userData를 사용하여 처리
-
-    // return NextResponse.json({ success: true, data: userData });
-    return NextResponse.json(userData);
+    return NextResponse.json({ success: true, data: userData });
   } catch (error) {
     console.error('Error during Kakao login:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' });

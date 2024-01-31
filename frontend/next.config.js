@@ -6,8 +6,11 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/oauth',
+        source: '/',
+        // source: '/',
         destination: 'https://api.campinggo.store',
+        // source: '/api/login',
+        // destination: 'https://api.campinggo.store',
       },
     ];
   },
